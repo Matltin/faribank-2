@@ -1,10 +1,11 @@
 package ir.ac.kntu.menu.chief.chiefmenu;
 
+import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.person.chief.Chief;
 
 import java.text.ParseException;
 
-public class ChiefMenu {
+public class ChiefMenu extends Menu {
 
     private Chief chief;
     private ManageUserMenu manageUserMenu;
