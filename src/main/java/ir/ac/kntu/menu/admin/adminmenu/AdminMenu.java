@@ -1,16 +1,20 @@
 package ir.ac.kntu.menu.admin.adminmenu;
 
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.CustomerDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.menu.admin.requstmenu.RequestAdminMenu;
 import ir.ac.kntu.menu.admin.useraccessmenu.UserAccessMenu;
 import ir.ac.kntu.message.Message;
 import ir.ac.kntu.message.MessageOption;
+import ir.ac.kntu.person.admin.Admin;
+import ir.ac.kntu.person.admin.Permission;
 import ir.ac.kntu.person.customer.Customer;
 import ir.ac.kntu.person.customer.State;
 
 public class AdminMenu extends Menu {
 
+    private Admin admin;
     private CustomerDB customerDB;
     private RequestAdminMenu requestAdminMenu;
     private UserAccessMenu userAccessMenu;
@@ -21,6 +25,11 @@ public class AdminMenu extends Menu {
         this.userAccessMenu = userAccessMenu;
     }
 
+    public void show(Admin admin) {
+        this.admin = admin;
+        show();
+    }
+
     @Override
     public void show() {
         System.out.println("admin Menu");
@@ -28,9 +37,9 @@ public class AdminMenu extends Menu {
         while (adminMenuOption != AdminMenuOption.BACK) {
             if (adminMenuOption != null) {
                 switch (adminMenuOption) {
-                    case AUTHENTICATION -> authentication();
-                    case REQUEST -> requestAdminMenu.show();
-                    case USER_ACCESS -> userAccessMenu.show();
+                    case AUTHENTICATION -> checkAuthentication();
+                    case REQUEST -> checkRequest();
+                    case USER_ACCESS -> checkUserAccess();
                     default -> System.out.print("");
                 }
             } else {
@@ -45,6 +54,15 @@ public class AdminMenu extends Menu {
         AdminMenuOption.printOption();
         System.out.print("Enter your choice : ");
         return getOption(AdminMenuOption.class);
+    }
+
+    private void checkAuthentication() {
+        Permission permission = admin.getPermission();
+        if(!permission.isAuthentication()) {
+            System.out.println(Constance.RED + "you do not have permission" + Constance.RESET);
+            return;
+        }
+        authentication();
     }
 
     private void authentication() {
@@ -100,5 +118,23 @@ public class AdminMenu extends Menu {
                 }
             }
         }
+    }
+
+    private void checkRequest() {
+        Permission permission = admin.getPermission();
+        if(!permission.isRequest()) {
+            System.out.println(Constance.RED + "you do not have permission" + Constance.RESET);
+            return;
+        }
+        requestAdminMenu.show(admin);
+    }
+
+    private void checkUserAccess() {
+        Permission permission = admin.getPermission();
+        if(!permission.isUserAccess()) {
+            System.out.println(Constance.RED + "you do not have permission" + Constance.RESET);
+            return;
+        }
+        userAccessMenu.show();
     }
 }
