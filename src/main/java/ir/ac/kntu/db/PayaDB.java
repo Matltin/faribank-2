@@ -1,5 +1,7 @@
 package ir.ac.kntu.db;
 
+import ir.ac.kntu.paya.Paya;
+
 import java.util.List;
 
 public class PayaDB {

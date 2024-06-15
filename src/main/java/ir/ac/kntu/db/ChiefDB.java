@@ -1,5 +1,7 @@
 package ir.ac.kntu.db;
 
+import ir.ac.kntu.person.chief.Chief;
+
 import java.util.Set;
 
 public class ChiefDB {

@@ -1,6 +1,9 @@
 package ir.ac.kntu.menu.chief.chiefmenu;
 
 import ir.ac.kntu.menu.Menu;
+import ir.ac.kntu.menu.chief.autotransactionmenu.AutoTransaction;
+import ir.ac.kntu.menu.chief.manageusermenu.ManageUserMenu;
+import ir.ac.kntu.menu.chief.settingmenu.SettingMenu;
 import ir.ac.kntu.person.chief.Chief;
 
 import java.text.ParseException;

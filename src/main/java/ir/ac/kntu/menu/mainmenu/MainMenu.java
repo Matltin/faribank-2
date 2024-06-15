@@ -3,6 +3,7 @@ package ir.ac.kntu.menu.mainmenu;
 import ir.ac.kntu.Constance;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.menu.admin.loginadminmenu.LoginAdminMenu;
+import ir.ac.kntu.menu.chief.loginchiefmenu.LoginChiefMenu;
 import ir.ac.kntu.menu.customer.logincustomermenu.LoginCustomerMenu;
 
 import java.text.ParseException;

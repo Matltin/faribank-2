@@ -1,5 +1,7 @@
 package ir.ac.kntu.db;
 
+import ir.ac.kntu.box.Box;
+
 import java.util.List;
 import java.util.Objects;
 

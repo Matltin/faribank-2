@@ -1,6 +1,6 @@
 package ir.ac.kntu.box;
 
-public class BoxType {
+public enum BoxType {
     SAVING("saving"),
     REMAINING("remaining"),
     PROFIT("profit");
