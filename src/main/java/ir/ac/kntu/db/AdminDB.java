@@ -10,7 +10,7 @@ public class AdminDB {
 
     public AdminDB(Set<Admin> admins) {
         this.admins = admins;
-        admins.add(new Admin("Matin", "Ahmadi", "1", "m"));
+        admins.add(new Admin("Matin", "Ahmadi", "Rr@138406", "m"));
         admins.add(new Admin("Reyhane", "MirArabshahi", "Rr@138406", "r"));
     }
 
@@ -18,7 +18,8 @@ public class AdminDB {
         admins.add(admin);
     }
 
-    public void removeAdmin() {
+    public void removeAdmin(Admin admin) {
+        admins.remove(admin);
     }
 
     public Set<Admin> getAdmins() {
@@ -40,5 +41,13 @@ public class AdminDB {
 
     public boolean doesExist(Admin admin) {
         return admins.contains(admin);
+    }
+
+    public void printAdmin() {
+        int counter = 1;
+        for(Admin admin : admins) {
+            System.out.println(counter + "." + admin.getFirstName() + " " + admin.getLastName());
+            counter++;
+        }
     }
 }
