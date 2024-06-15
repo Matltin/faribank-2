@@ -5,6 +5,7 @@ import ir.ac.kntu.db.AdminDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.menu.admin.adminmenu.AdminMenu;
 import ir.ac.kntu.person.admin.Admin;
+import ir.ac.kntu.person.chief.State;
 
 public class LoginAdminMenu extends Menu {
 
@@ -46,8 +47,13 @@ public class LoginAdminMenu extends Menu {
         String password = getPassword();
         for (Admin admin : adminDB.getAdmins()) {
             if (admin.getUserName().equals(userName) && admin.getPassword().equals(password)) {
-                adminMenu.show();
+                if(admin.getState() == State.UNBLOCKED) {
+                    adminMenu.show(admin);
+                    return;
+                }
+                System.out.println(Constance.RED + "you have been blocked!!" + Constance.RESET);
                 return;
+
             }
         }
         System.out.println(Constance.RED + "invalid username or password" + Constance.RESET);
