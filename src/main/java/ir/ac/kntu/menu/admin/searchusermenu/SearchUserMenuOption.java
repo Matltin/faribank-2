@@ -19,6 +19,6 @@ public enum SearchUserMenuOption {
                 "5.First name & Phone number\n" +
                 "6.Last name & Phone number\n" +
                 "7.First name & Last name & Phone number\n" +
-                "8.Back");
+                "8.Back\n");
     }
 }
