@@ -1,6 +1,7 @@
 package ir.ac.kntu.person.admin;
 
 import ir.ac.kntu.person.Person;
+import ir.ac.kntu.person.chief.State;
 
 import java.util.Objects;
 
