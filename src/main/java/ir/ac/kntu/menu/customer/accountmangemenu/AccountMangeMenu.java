@@ -56,6 +56,7 @@ public class AccountMangeMenu extends Menu {
     }
 
     private void showAccountBalance() {
+        System.out.println("Card number : " + customer.getAccount().getCard().getCardNumber());
         System.out.println("Account number : " + customer.getAccount().getAccountNO());
         System.out.println(customer.getAccount().getBalance());
     }
