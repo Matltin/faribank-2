@@ -6,6 +6,8 @@ public enum CustomerMenuOption {
     CONTACT_MENU,
     SUPPORT,
     SETTING,
+    BOXES,
+    SIM_CARD,
     BACK;
 
     public static void printOption() {
@@ -14,7 +16,9 @@ public enum CustomerMenuOption {
                 "3.Contact menu\n" +
                 "4.Support\n" +
                 "5.Setting\n" +
-                "6.Back\n");
+                "6.Boxes\n" +
+                "7.Sim card\n" +
+                "8.Back\n");
     }
 
 }

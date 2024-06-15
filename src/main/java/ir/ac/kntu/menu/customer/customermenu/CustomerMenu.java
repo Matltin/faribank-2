@@ -18,13 +18,19 @@ public class CustomerMenu extends Menu {
     private ContactMenu contactMenu;
     private SupportMenu supportMenu;
     private SettingMenu settingMenu;
+    private BoxMenu boxMenu;
+    private SimCardMenu simCardMenu;
 
-    public CustomerMenu(TransferMenu transferMenu, AccountMangeMenu accountMangeMenu, ContactMenu contactMenu, SupportMenu supportMenu, SettingMenu settingMenu) {
+    public CustomerMenu(TransferMenu transferMenu, AccountMangeMenu accountMangeMenu,
+                        ContactMenu contactMenu, SupportMenu supportMenu,
+                        SettingMenu settingMenu, BoxMenu boxMenu, SimCardMenu simCardMenu) {
         this.transferMenu = transferMenu;
         this.accountMangeMenu = accountMangeMenu;
         this.contactMenu = contactMenu;
         this.supportMenu = supportMenu;
         this.settingMenu = settingMenu;
+        this.boxMenu = boxMenu;
+        this.simCardMenu = simCardMenu;
     }
 
     public void show(Customer customer) throws ParseException {
@@ -44,6 +50,8 @@ public class CustomerMenu extends Menu {
                     case CONTACT_MENU -> contactMenu.show(customer);
                     case SUPPORT -> supportMenu.show(customer);
                     case SETTING -> settingMenu.show(customer);
+                    case BOXES -> boxMenu.show(customer);
+                    case SIM_CARD -> simCardMenu.show(customer);
                     default -> System.out.print("");
                 }
             } else {
