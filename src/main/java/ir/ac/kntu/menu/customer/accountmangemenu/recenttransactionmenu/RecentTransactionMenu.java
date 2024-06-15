@@ -90,8 +90,10 @@ public class RecentTransactionMenu extends Menu {
             if (size == 0) {
                 throw new RuntimeException("there is no transaction yet!");
             }
+            int counter = 1;
             for (int i = size - 1; i >= 0; i--) {
-                System.out.println(customer.getAccount().getTransactionDB().getTransactions().get(i));
+                System.out.println(counter + "." + customer.getAccount().getTransactionDB().getTransactions().get(i));
+                counter++;
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
