@@ -7,9 +7,12 @@ import ir.ac.kntu.menu.admin.branch.BranchMenu;
 import ir.ac.kntu.menu.admin.statemenu.StateMenu;
 import ir.ac.kntu.message.Message;
 import ir.ac.kntu.message.State;
+import ir.ac.kntu.person.admin.Admin;
+import ir.ac.kntu.person.admin.Permission;
 
 public class SearchMenu extends Menu {
 
+    private Admin admin;
     private AnswerDB answerDB;
     private StateMenu stateMenu;
     private BranchMenu branchMenu;
@@ -20,6 +23,11 @@ public class SearchMenu extends Menu {
         this.branchMenu = branchMenu;
     }
 
+    public void show(Admin admin) {
+        this.admin = admin;
+        show();
+    }
+
     @Override
     public void show() {
         System.out.println("search menu");
@@ -27,9 +35,9 @@ public class SearchMenu extends Menu {
         while (searchMenuOption != SearchMenuOption.BACK) {
             if (searchMenuOption != null) {
                 switch (searchMenuOption) {
-                    case STATE -> stateMenu.show();
+                    case STATE -> checkState();
                     case BRANCH -> branchMenu.show();
-                    case USER -> searchByUser(answerDB);
+                    case USER -> checkUser();
                     default -> System.out.print("");
                 }
             } else {
@@ -45,6 +53,24 @@ public class SearchMenu extends Menu {
         SearchMenuOption.printOption();
         System.out.print("Enter your choice : ");
         return getOption(SearchMenuOption.class);
+    }
+
+    private void checkState() {
+        Permission permission = admin.getPermission();
+        if(!permission.isState()) {
+            System.out.println(Constance.RED + "you do not have permission" + Constance.RESET);
+            return;
+        }
+        stateMenu.show();
+    }
+
+    private void checkUser() {
+        Permission permission = admin.getPermission();
+        if(!permission.isUser()) {
+            System.out.println(Constance.RED + "you do not have permission" + Constance.RESET);
+            return;
+        }
+        searchByUser(answerDB);
     }
 
     private void searchByUser(AnswerDB answerDB) {
