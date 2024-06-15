@@ -1,0 +1,44 @@
+package ir.ac.kntu.db;
+
+import java.util.List;
+
+public class PayaDB {
+    private List<Paya> payas;
+
+    public PayaDB(List<Paya> payas) {
+        this.payas = payas;
+    }
+
+    public void addPaya(Paya paya) {
+        payas.add(paya);
+    }
+
+    public void removePaya(Paya paya) {
+        payas.remove(paya);
+    }
+
+    public int size() {
+        return payas.size();
+    }
+
+    public Paya getIndex(int index) {
+        return payas.get(index);
+    }
+
+    public List<Paya> getPayas() {
+        return payas;
+    }
+
+    public void setPayas(List<Paya> payas) {
+        this.payas = payas;
+    }
+
+    public void printPayaDB() {
+        int counter = 1;
+        for (Paya paya : payas) {
+            System.out.println(counter + "." + " source customer : " + paya.getSourceCustomer().getLastName() +
+                    " destination customer : " + paya.getDestinationCustomer().getLastName());
+            counter++;
+        }
+    }
+}
