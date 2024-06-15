@@ -1,5 +1,7 @@
 package ir.ac.kntu.phone;
 
+import ir.ac.kntu.db.SimCardDB;
+
 import java.util.Objects;
 
 public class Phone {
