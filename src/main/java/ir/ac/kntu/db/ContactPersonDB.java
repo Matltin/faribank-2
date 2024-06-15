@@ -4,8 +4,10 @@ import ir.ac.kntu.person.ContactPerson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ContactPersonDB {
+
 
     private List<ContactPerson> contactPersonList;
 
@@ -65,5 +67,18 @@ public class ContactPersonDB {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        ContactPersonDB that = (ContactPersonDB) obj;
+        return Objects.equals(contactPersonList, that.contactPersonList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(contactPersonList);
     }
 }
