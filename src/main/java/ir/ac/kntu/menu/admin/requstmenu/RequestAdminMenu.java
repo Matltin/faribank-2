@@ -5,15 +5,21 @@ import ir.ac.kntu.db.AnswerDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.menu.admin.searchmenu.SearchMenu;
 import ir.ac.kntu.message.State;
+import ir.ac.kntu.person.admin.Admin;
 
 public class RequestAdminMenu extends Menu {
-
+    private Admin admin;
     private AnswerDB answerDB;
     private SearchMenu searchMenu;
 
     public RequestAdminMenu(AnswerDB answerDB, SearchMenu searchMenu) {
         this.answerDB = answerDB;
         this.searchMenu = searchMenu;
+    }
+
+    public void show(Admin admin) {
+        this.admin = admin;
+        show();
     }
 
     @Override
