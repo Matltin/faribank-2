@@ -4,6 +4,7 @@ import ir.ac.kntu.transaction.Transaction;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class TransactionDB {
     private List<Transaction> transactions;
@@ -41,5 +42,18 @@ public class TransactionDB {
         return "TransactionDB{" +
                 "transactions=" + transactions +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        TransactionDB that = (TransactionDB) obj;
+        return Objects.equals(transactions, that.transactions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(transactions);
     }
 }
