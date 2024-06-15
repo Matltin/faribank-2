@@ -11,10 +11,12 @@ public class MainMenu extends Menu {
 
     private LoginAdminMenu loginAdminMenu;
     private LoginCustomerMenu loginCustomerMenu;
+    private LoginChiefMenu loginChiefMenu;
 
-    public MainMenu(LoginAdminMenu loginAdminMenu, LoginCustomerMenu loginCustomerMenu) {
+    public MainMenu(LoginAdminMenu loginAdminMenu, LoginCustomerMenu loginCustomerMenu, LoginChiefMenu loginChiefMenu) {
         this.loginAdminMenu = loginAdminMenu;
         this.loginCustomerMenu = loginCustomerMenu;
+        this.loginChiefMenu = loginChiefMenu;
     }
 
     @Override
@@ -26,6 +28,7 @@ public class MainMenu extends Menu {
                 switch (mainMenuOption) {
                     case ADMIN -> loginAdminMenu.show();
                     case CUSTOMER -> loginCustomerMenu.show();
+                    case CHIEF -> loginChiefMenu.show();
                     default -> System.out.print("");
                 }
             } else {
