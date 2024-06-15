@@ -36,9 +36,18 @@ public class CustomerDB {
         this.customers = customers;
     }
 
-    public Customer findCustomer(String accountNO) {
+    public Customer findCustomerByAccountNO(String accountNO) {
         for (Customer customer : customers) {
             if (customer.getAccount().getAccountNO().equals(accountNO)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    public Customer findCustomerByPhone(String phoneNumber) {
+        for(Customer customer : customers) {
+            if(customer.getPhone().getPhoneNumber().equals(phoneNumber)) {
                 return customer;
             }
         }
@@ -51,5 +60,14 @@ public class CustomerDB {
 
     public int size() {
         return customers.size();
+    }
+
+    public String getAccountNumber(String cardNumber) {
+        for(Customer customer : customers) {
+            if(customer.getAccount().getCard().getCardNumber().equals(cardNumber)) {
+                return customer.getAccount().getAccountNO();
+            }
+        }
+        return null;
     }
 }
