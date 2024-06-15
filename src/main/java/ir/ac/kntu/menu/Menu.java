@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu;
 
-import ir.ac.kntu.Constant;
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.person.customer.Customer;
 import ir.ac.kntu.person.customer.State;
 import ir.ac.kntu.util.ScannerWrapper;
@@ -86,7 +86,7 @@ public abstract class Menu {
     }
 
     public String getYesNo() {
-        System.out.println("Do you want accept ? (Y/N) : ");
+        System.out.println("Do you want to accept ? (Y/N) : ");
         return ScannerWrapper.getInstance().nextLine();
     }
 
@@ -103,18 +103,98 @@ public abstract class Menu {
         return customer.getState() == State.ACCEPTED;
     }
 
+    public String getBlockState() {
+        System.out.println("Do you want Block ? (Y/N)");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+
+    public String getBoxName() {
+        System.out.println("Enter box name : ");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+
+    public String getBoxType() {
+        System.out.println("Chose one type of Boxes : (saving)(profit)");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+
+    public Long getChargeCredit() {
+        System.out.println("Enter the charge : ");
+        return Long.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public long getWage() {
+        System.out.println("Enter the wage : ");
+        return Long.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public String getCardNumber() {
+        System.out.println("Enter the card number : ");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+
+    public Integer getAuthentication() {
+        System.out.println("Enter authentication permission : ");
+        return Integer.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public Integer getRequest() {
+        System.out.println("Enter request permission : ");
+        return Integer.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public Integer getContact() {
+        System.out.println("Enter contact permission : ");
+        return Integer.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public Integer getSetting() {
+        System.out.println("Enter setting permission : ");
+        return Integer.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public Integer getTransfer() {
+        System.out.println("Enter transfer permission : ");
+        return Integer.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public Integer getReport() {
+        System.out.println("Enter report permission : ");
+        return Integer.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public Integer getSate() {
+        System.out.println("Enter state permission : ");
+        return Integer.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public Integer getUser() {
+        System.out.println("Enter user permission : ");
+        return Integer.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public Integer getUserAccess() {
+        System.out.println("Enter userAccess permission : ");
+        return Integer.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public Integer getMonthCounter() {
+        System.out.println("Enter month counter : ");
+        return Integer.valueOf(ScannerWrapper.getInstance().nextLine());
+    }
+
     private boolean checkCardPassword(String password) {
         if (password.matches("[0-9]{4}")) {
             return true;
         } else {
-            System.out.println(Constant.RED + "invalid password format!!" + Constant.RESET);
+            System.out.println(Constance.RED + "invalid password format!!" + Constance.RESET);
             return false;
         }
     }
 
     private boolean checkPhoneNumber(String phoneNumber) {
         if (!phoneNumber.matches("^(09)[0-9]{9}")) {
-            System.out.println(Constant.RED + "invalid phoneNumber format!!" + Constant.RESET);
+            System.out.println(Constance.RED + "invalid phoneNumber format!!" + Constance.RESET);
             return false;
         }
         return true;
@@ -141,7 +221,7 @@ public abstract class Menu {
         if (upperCase && lowerCase && number && character) {
             return true;
         }
-        System.out.println(Constant.RED + "password is too weak!" + Constant.RESET);
+        System.out.println(Constance.RED + "password is too weak!" + Constance.RESET);
         return false;
     }
 
@@ -153,6 +233,4 @@ public abstract class Menu {
         return character == '~' || character == '!' || character == '^' || character == '(' || character == ')' ||
                 character == '-' || character == '/' || character == '=' || character == '"' || character == ':' || character == '`';
     }
-
-
 }

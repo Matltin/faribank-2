@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu.admin.searchmenu;
 
-import ir.ac.kntu.Constant;
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.AnswerDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.menu.admin.branch.BranchMenu;
@@ -49,7 +49,7 @@ public class SearchMenu extends Menu {
 
     private void searchByUser(AnswerDB answerDB) {
         if(answerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer to show" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer to show" + Constance.RESET);
             return;
         }
         String phoneNumber = getPhoneNumber();

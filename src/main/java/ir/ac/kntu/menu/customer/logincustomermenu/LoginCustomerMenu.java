@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu.customer.logincustomermenu;
 
-import ir.ac.kntu.Constant;
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.CustomerDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.menu.customer.customermenu.CustomerMenu;
@@ -62,13 +62,13 @@ public class LoginCustomerMenu extends Menu {
             if(cust.getState() == State.ACCEPTED) {
                 customerMenu.show(cust);
             } else if(cust.getState() == State.IN_PROGRESSING) {
-                System.out.println(Constant.YELLOW + "in progressing!!" + Constant.RESET);
+                System.out.println(Constance.YELLOW + "in progressing!!" + Constance.RESET);
             } else if(cust.getState() == State.REJECT) {
                 customerDB.removeCustomer(cust);
                 System.out.println(cust.getMessageDB().getMessageList().get(0));
             }
         } else {
-            System.out.println(Constant.RED + "IDocument or PhoneNumber is invalid!!" + Constant.RESET);
+            System.out.println(Constance.RED + "IDocument or PhoneNumber is invalid!!" + Constance.RESET);
         }
     }
 
@@ -80,7 +80,7 @@ public class LoginCustomerMenu extends Menu {
         String password = getPassword();
         for (Customer customer : customerDB.getCustomers()) {
             if (customer.getPhoneNumber().equals(phoneNumber) || customer.getIDocument().equals(iDocument)) {
-                System.out.println(Constant.RED + "the phone number or the iDocument is already exist" + Constant.RESET);
+                System.out.println(Constance.RED + "the phone number or the iDocument is already exist" + Constance.RESET);
                 return;
             }
         }

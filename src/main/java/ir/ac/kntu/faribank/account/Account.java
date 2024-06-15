@@ -1,6 +1,6 @@
 package ir.ac.kntu.faribank.account;
 
-import ir.ac.kntu.Constant;
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.*;
 import ir.ac.kntu.faribank.card.Card;
 import ir.ac.kntu.person.customer.Customer;
@@ -87,14 +87,14 @@ public class Account {
 
     public boolean transferFari(long inputMoney, String accountNO, CustomerDB customerDB) {
         if(inputMoney > 8000000) {
-            System.out.println(Constant.RED + "payment is out of limit!!" + Constant.RESET);
+            System.out.println(Constance.RED + "payment is out of limit!!" + Constance.RESET);
             return false;
         }
-        if(inputMoney + Constant.getFariFariWage() > getBalance()) {
-            System.out.println(Constant.RED + "input money is more than your balance!!" + Constant.RESET);
+        if(inputMoney + Constance.getFariFariWage() > getBalance()) {
+            System.out.println(Constance.RED + "input money is more than your balance!!" + Constance.RESET);
             return false;
         }
-        setBalance(getBalance() - inputMoney - Constant.getFariFariWage());
+        setBalance(getBalance() - inputMoney - Constance.getFariFariWage());
         Customer customer = customerDB.findCustomerByAccountNO(accountNO);
         customer.getAccount().setBalance(inputMoney + customer.getAccount().getBalance());
         Transaction transaction = new Transaction(customer.getFirstName(), customer.getLastName(), customer.getAccount().getAccountNO(), getAccountNO(), TransactionType.TRANSFER);
@@ -105,12 +105,12 @@ public class Account {
 
     public boolean transferPole(long inputMoney, String accountNO, BankDB bankDB) {
         if(inputMoney > 5000000) {
-            System.out.println(Constant.RED + "payment is out of limit!!" + Constant.RESET);
+            System.out.println(Constance.RED + "payment is out of limit!!" + Constance.RESET);
             return false;
         }
-        long finalMoney = inputMoney + (inputMoney * Constant.getFariPole())/100;
-        if(inputMoney + Constant.getFariPole() > getBalance()) {
-            System.out.println(Constant.RED + "input money is more than your balance!!" + Constant.RESET);
+        long finalMoney = inputMoney + (inputMoney * Constance.getFariPole())/100;
+        if(inputMoney + Constance.getFariPole() > getBalance()) {
+            System.out.println(Constance.RED + "input money is more than your balance!!" + Constance.RESET);
             return false;
         }
         setBalance(getBalance() - finalMoney);
@@ -124,11 +124,11 @@ public class Account {
 
     public boolean transferPaya(long inputMoney, Customer customer, Customer cust, PayaDB payaDB) {
         if(inputMoney > 5000000) {
-            System.out.println(Constant.RED + "payment is out of limit!!" + Constant.RESET);
+            System.out.println(Constance.RED + "payment is out of limit!!" + Constance.RESET);
             return false;
         }
-        if(inputMoney + Constant.getFariPole() > getBalance()) {
-            System.out.println(Constant.RED + "input money is more than your balance!!" + Constant.RESET);
+        if(inputMoney + Constance.getFariPole() > getBalance()) {
+            System.out.println(Constance.RED + "input money is more than your balance!!" + Constance.RESET);
             return false;
         }
         Paya paya = new Paya(customer, cust, inputMoney);

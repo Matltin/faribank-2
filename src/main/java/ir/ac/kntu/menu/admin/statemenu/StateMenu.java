@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu.admin.statemenu;
 
-import ir.ac.kntu.Constant;
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.AnswerDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.message.Message;
@@ -42,11 +42,11 @@ public class StateMenu extends Menu {
 
     private void showSubmit() {
         if(answerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer to show!!" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer to show!!" + Constance.RESET);
             return;
         }
         if(!checkState(State.SUBMIT)) {
-            System.out.println(Constant.RED + "there is no submitted customer!!" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no submitted customer!!" + Constance.RESET);
             return;
         }
         print(State.SUBMIT);
@@ -62,11 +62,11 @@ public class StateMenu extends Menu {
 
     private void showInProgress() {
         if(answerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer to show!!");
+            System.out.println(Constance.RED + "there is no customer to show!!");
             return;
         }
         if(!checkState(State.IN_PROGRESS)) {
-            System.out.println(Constant.RED + "there is no in progressed customer!!" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no in progressed customer!!" + Constance.RESET);
             return;
         }
         print(State.IN_PROGRESS);
@@ -82,11 +82,11 @@ public class StateMenu extends Menu {
 
     private void showClosed() {
         if(answerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer to show!!");
+            System.out.println(Constance.RED + "there is no customer to show!!");
             return;
         }
         if(!checkState(State.CLOSED)) {
-            System.out.println(Constant.RED + "there is no closed customer!!" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no closed customer!!" + Constance.RESET);
             return;
         }
         print(State.CLOSED);

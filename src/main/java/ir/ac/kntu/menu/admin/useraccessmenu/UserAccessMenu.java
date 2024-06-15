@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu.admin.useraccessmenu;
 
-import ir.ac.kntu.Constant;
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.CustomerDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.menu.admin.searchusermenu.SearchUserMenu;
@@ -44,7 +44,7 @@ public class UserAccessMenu extends Menu {
     private void showUser() {
         int counter = 1;
         if(customerDB.size() == 0) {
-            System.out.println(Constant.RED + "it is empty!!" + Constant.RESET);
+            System.out.println(Constance.RED + "it is empty!!" + Constance.RESET);
             return;
         }
         for (Customer customer : customerDB.getCustomers()) {

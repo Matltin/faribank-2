@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu.customer.contactmenu;
 
-import ir.ac.kntu.Constant;
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.CustomerDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.person.ContactPerson;
@@ -50,7 +50,7 @@ public class ContactMenu extends Menu {
         int number;
         customer.getContactPerson().printContactPerson();
         if(customer.getContactPerson().getContactPerson().isEmpty()) {
-            System.out.println(Constant.RED + "there is no customer to show!!" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer to show!!" + Constance.RESET);
             return;
         }
         number = getNumber();
@@ -63,7 +63,7 @@ public class ContactMenu extends Menu {
 
     private void editContactINFO() {
         if(customer.getContactPerson().getContactPerson().isEmpty()) {
-            System.out.println(Constant.RED + "there is no customer to show!!" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer to show!!" + Constance.RESET);
             return;
         }
         String phoneNumber = getPhoneNumber();
@@ -98,7 +98,7 @@ public class ContactMenu extends Menu {
         if(check) {
             customer.addContactPerson(firstName, lastName, phoneNumber, customerDB);
         } else {
-            System.out.println(Constant.RED + "there is no customer with this phone number!!" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer with this phone number!!" + Constance.RESET);
         }
     }
 }

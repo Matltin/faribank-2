@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu.customer.accountmangemenu.recenttransactionmenu;
 
-import ir.ac.kntu.Constant;
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.person.customer.Customer;
 
@@ -61,7 +61,7 @@ public class RecentTransactionMenu extends Menu {
     private void searchByTime() throws ParseException {
         int size = customer.getAccount().getTransactionDB().getTransactions().size();
         if(size == 0) {
-            System.out.println(Constant.RED + "there is no transaction yet!" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no transaction yet!" + Constance.RESET);
             return;
         }
         try {
@@ -80,7 +80,7 @@ public class RecentTransactionMenu extends Menu {
                 }
             }
         } catch (Exception e) {
-            System.out.println(Constant.RED + "invalid input!!" + Constant.RESET);
+            System.out.println(Constance.RED + "invalid input!!" + Constance.RESET);
         }
     }
 

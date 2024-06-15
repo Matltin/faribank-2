@@ -1,6 +1,6 @@
 package ir.ac.kntu;
 
-public class Constant {
+public class Constance {
 
     private static long WAGE = 500;
 
@@ -41,7 +41,7 @@ public class Constant {
     }
 
     public static void setWAGE(long WAGE) {
-        Constant.WAGE = WAGE;
+        Constance.WAGE = WAGE;
     }
 
     public static long getSimWage() {
@@ -89,6 +89,6 @@ public class Constant {
     }
 
     public static void setPROFIT(long PROFIT) {
-        Constant.PROFIT = PROFIT;
+        Constance.PROFIT = PROFIT;
     }
 }

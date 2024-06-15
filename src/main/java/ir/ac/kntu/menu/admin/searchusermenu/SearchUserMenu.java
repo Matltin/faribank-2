@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu.admin.searchusermenu;
 
-import ir.ac.kntu.Constant;
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.CustomerDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.person.customer.Customer;
@@ -46,7 +46,7 @@ public class SearchUserMenu extends Menu {
 
     private void searchByFirstName() {
         if(customerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer to show" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer to show" + Constance.RESET);
             return;
         }
         String firstName = getFirstName();
@@ -61,7 +61,7 @@ public class SearchUserMenu extends Menu {
 
     private void searchByLastName() {
         if(customerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer to show" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer to show" + Constance.RESET);
             return;
         }
         int counter = 1;
@@ -76,7 +76,7 @@ public class SearchUserMenu extends Menu {
 
     private void searchByPhoneNumber() {
         if(customerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer to show" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer to show" + Constance.RESET);
             return;
         }
         int counter = 1;
@@ -91,7 +91,7 @@ public class SearchUserMenu extends Menu {
 
     private void searchByFirstLastName() {
         if(customerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer to show" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer to show" + Constance.RESET);
             return;
         }
         int counter = 1;
@@ -107,7 +107,7 @@ public class SearchUserMenu extends Menu {
 
     private void searchByFirstNamePhoneNumber() {
         if(customerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer to show" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer to show" + Constance.RESET);
             return;
         }
         int counter = 1;
@@ -123,7 +123,7 @@ public class SearchUserMenu extends Menu {
 
     private void searchByLastNamePhoneNumber() {
         if(customerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer to show" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer to show" + Constance.RESET);
             return;
         }
         int counter = 1;
@@ -139,7 +139,7 @@ public class SearchUserMenu extends Menu {
 
     private void searchByFirstLastNamePhoneNumber() {
         if(customerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer to show" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer to show" + Constance.RESET);
             return;
         }
         int counter = 1;

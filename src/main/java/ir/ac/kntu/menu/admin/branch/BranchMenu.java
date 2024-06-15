@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu.admin.branch;
 
-import ir.ac.kntu.Constant;
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.AnswerDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.message.Message;
@@ -44,7 +44,7 @@ public class BranchMenu extends Menu {
 
     private void showByContact(AnswerDB answerDB) {
         if(answerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer" + Constance.RESET);
             return;
         }
         if(!checkMessageOption(MessageOption.CONTACT)) {
@@ -64,7 +64,7 @@ public class BranchMenu extends Menu {
 
     private void showSetting(AnswerDB answerDB) {
         if(answerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer" + Constance.RESET);
             return;
         }
         if(!checkMessageOption(MessageOption.SETTING)) {
@@ -84,7 +84,7 @@ public class BranchMenu extends Menu {
 
     private void showTransfer(AnswerDB answerDB) {
         if(answerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer" + Constance.RESET);
             return;
         }
         if(!checkMessageOption(MessageOption.TRANSFER)) {
@@ -104,11 +104,11 @@ public class BranchMenu extends Menu {
 
     private void showReport(AnswerDB answerDB) {
         if(answerDB.size() == 0) {
-            System.out.println(Constant.RED + "there is no customer" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no customer" + Constance.RESET);
             return;
         }
         if(!checkMessageOption(MessageOption.REPORT)) {
-            System.out.println(Constant.RED + "there is no report message to show!!" + Constant.RESET);
+            System.out.println(Constance.RED + "there is no report message to show!!" + Constance.RESET);
             return;
         }
         print(answerDB, MessageOption.REPORT);
