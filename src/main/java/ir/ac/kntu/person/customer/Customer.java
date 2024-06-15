@@ -1,6 +1,6 @@
 package ir.ac.kntu.person.customer;
 
-import ir.ac.kntu.Constance;
+import ir.ac.kntu.Constant;
 import ir.ac.kntu.db.*;
 import ir.ac.kntu.faribank.account.Account;
 import ir.ac.kntu.person.ContactPerson;
@@ -128,7 +128,7 @@ public class Customer extends Person {
         }
         Customer customer = customerDB.findCustomerByAccountNO(accountNumber);
         if (customer.state != State.ACCEPTED) {
-            System.out.println(Constance.RED + "There is no customer!!" + Constance.RESET);
+            System.out.println(Constant.RED + "There is no customer!!" + Constant.RESET);
             return;
         }
         try {

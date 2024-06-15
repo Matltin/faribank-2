@@ -1,6 +1,6 @@
 package ir.ac.kntu.profitthread;
 
-import ir.ac.kntu.Constance;
+import ir.ac.kntu.Constant;
 import ir.ac.kntu.box.Box;
 import ir.ac.kntu.person.customer.Customer;
 
@@ -15,7 +15,7 @@ public class ProfitThread implements Runnable{
 
     @Override
     public void run() {
-        long money = (long) (box.getBalance() * Constance.getPROFIT())/100;
+        long money = (long) (box.getBalance() * Constant.getPROFIT())/100;
         customer.getAccount().deposit(money);
         box.setCountMonth(box.getCountMonth() - 1);
         box.makeNewDate();

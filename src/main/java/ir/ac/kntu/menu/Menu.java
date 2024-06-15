@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu;
 
-import ir.ac.kntu.Constance;
+import ir.ac.kntu.Constant;
 import ir.ac.kntu.person.customer.Customer;
 import ir.ac.kntu.person.customer.State;
 import ir.ac.kntu.util.ScannerWrapper;
@@ -107,14 +107,14 @@ public abstract class Menu {
         if (password.matches("[0-9]{4}")) {
             return true;
         } else {
-            System.out.println(Constance.RED + "invalid password format!!" + Constance.RESET);
+            System.out.println(Constant.RED + "invalid password format!!" + Constant.RESET);
             return false;
         }
     }
 
     private boolean checkPhoneNumber(String phoneNumber) {
         if (!phoneNumber.matches("^(09)[0-9]{9}")) {
-            System.out.println(Constance.RED + "invalid phoneNumber format!!" + Constance.RESET);
+            System.out.println(Constant.RED + "invalid phoneNumber format!!" + Constant.RESET);
             return false;
         }
         return true;
@@ -141,7 +141,7 @@ public abstract class Menu {
         if (upperCase && lowerCase && number && character) {
             return true;
         }
-        System.out.println(Constance.RED + "password is too weak!" + Constance.RESET);
+        System.out.println(Constant.RED + "password is too weak!" + Constant.RESET);
         return false;
     }
 

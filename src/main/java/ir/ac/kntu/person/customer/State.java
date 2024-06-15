@@ -1,11 +1,11 @@
 package ir.ac.kntu.person.customer;
 
-import ir.ac.kntu.Constance;
+import ir.ac.kntu.Constant;
 
 public enum State {
-    ACCEPTED(Constance.GREEN + "Accepted"),
-    IN_PROGRESSING(Constance.YELLOW + "in Progressing"),
-    REJECT(Constance.RED + "Reject");
+    ACCEPTED(Constant.GREEN + "Accepted"),
+    IN_PROGRESSING(Constant.YELLOW + "in Progressing"),
+    REJECT(Constant.RED + "Reject");
 
     private final String state;
 

@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu.admin.loginadminmenu;
 
-import ir.ac.kntu.Constance;
+import ir.ac.kntu.Constant;
 import ir.ac.kntu.db.AdminDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.menu.admin.adminmenu.AdminMenu;
@@ -50,7 +50,7 @@ public class LoginAdminMenu extends Menu {
                 return;
             }
         }
-        System.out.println(Constance.RED + "invalid username or password" + Constance.RESET);
+        System.out.println(Constant.RED + "invalid username or password" + Constant.RESET);
     }
 
     private void register() {

@@ -1,6 +1,6 @@
 package ir.ac.kntu.menu.customer.transfermoneymenu;
 
-import ir.ac.kntu.Constance;
+import ir.ac.kntu.Constant;
 import ir.ac.kntu.db.CustomerDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.person.ContactPerson;
@@ -33,7 +33,7 @@ public class TransferMenu extends Menu {
                     default -> System.out.print("");
                 }
             } else {
-                System.out.println(Constance.RED + "invalid input!!" + Constance.RESET);
+                System.out.println(Constant.RED + "invalid input!!" + Constant.RESET);
             }
             transMenuOption = printMenuOption();
         }
@@ -48,7 +48,7 @@ public class TransferMenu extends Menu {
 
     private void transferByRecentAccount() {
         if (customer.getRecentTransaction().getContactPersonList().isEmpty()) {
-            System.out.println(Constance.RED + "there is no transaction to transfer money!!" + Constance.RESET);
+            System.out.println(Constant.RED + "there is no transaction to transfer money!!" + Constant.RESET);
             return;
         }
         customer.getRecentTransaction().printRecentContact();
@@ -58,7 +58,7 @@ public class TransferMenu extends Menu {
             long inputMoney = getInputMoney();
             customer.getAccount().transferMoney(inputMoney, contactPerson.getAccountNumber(), customerDB);
         } else {
-            System.out.println(Constance.RED + "Number out of range!" + Constance.RESET);
+            System.out.println(Constant.RED + "Number out of range!" + Constant.RESET);
         }
     }
 
@@ -70,10 +70,10 @@ public class TransferMenu extends Menu {
             if (0 < number && number <= customer.getContactPerson().getContactPerson().size()) {
                 checkContact(number);
             } else {
-                System.out.println(Constance.RED + "Number out of range!" + Constance.RESET);
+                System.out.println(Constant.RED + "Number out of range!" + Constant.RESET);
             }
         } else {
-            System.out.println(Constance.RED + "Access to contacts is closed" + Constance.RESET);
+            System.out.println(Constant.RED + "Access to contacts is closed" + Constant.RESET);
         }
     }
 
@@ -82,7 +82,7 @@ public class TransferMenu extends Menu {
         Customer cust = customerDB.findCustomer(accountNo);
         if (cust != null) {
             if(!isAcceptedCustomer(cust)) {
-                System.out.println(Constance.RED + "There is no customer" + Constance.RESET);
+                System.out.println(Constant.RED + "There is no customer" + Constant.RESET);
                 return;
             }
             long inputMoney = getInputMoney();
@@ -98,7 +98,7 @@ public class TransferMenu extends Menu {
         ContactPerson contactPerson = customer.getContactPerson().getContactPerson().get(number - 1);
         Customer cust = customerDB.findCustomer(contactPerson.getAccountNumber());
         if (!cust.isContactAvailable()) {
-            System.out.println(Constance.RED + "activation of your contact is off" + Constance.RESET);
+            System.out.println(Constant.RED + "activation of your contact is off" + Constant.RESET);
             return;
         }
         if (cust.getContactPerson().checkContact(customer.getAccount().getAccountNO())) {
@@ -108,7 +108,7 @@ public class TransferMenu extends Menu {
                 customer.getRecentTransaction().addContactPersonList(contactPerson1);
             }
         } else {
-            System.out.println(Constance.RED + "your are not contact of " + cust.getFirstName() + " " + cust.getFirstName() + Constance.RESET);
+            System.out.println(Constant.RED + "your are not contact of " + cust.getFirstName() + " " + cust.getFirstName() + Constant.RESET);
         }
     }
 }
