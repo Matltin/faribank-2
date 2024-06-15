@@ -6,10 +6,18 @@ import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.message.Message;
 import ir.ac.kntu.message.MessageOption;
 import ir.ac.kntu.message.State;
+import ir.ac.kntu.person.admin.Admin;
+import ir.ac.kntu.person.admin.Permission;
 
 public class BranchMenu extends Menu {
 
     private AnswerDB answerDB;
+    private Admin admin;
+
+    public void show(Admin admin) {
+        this.admin = admin;
+        show();
+    }
 
     public BranchMenu(AnswerDB answerDB) {
         this.answerDB = answerDB;
@@ -22,7 +30,7 @@ public class BranchMenu extends Menu {
         while (messageOption != MessageOption.BACK) {
             if (messageOption != null) {
                 switch (messageOption) {
-                    case CONTACT -> showByContact(answerDB);
+                    case CONTACT -> checkContact();
                     case SETTING -> showSetting(answerDB);
                     case TRANSFER -> showTransfer(answerDB);
                     case REPORT -> showReport(answerDB);
@@ -40,6 +48,42 @@ public class BranchMenu extends Menu {
         MessageOption.printOption();
         System.out.print("Enter your choice : ");
         return getOption(MessageOption.class);
+    }
+
+    private void checkContact() {
+        Permission permission = admin.getPermission();
+        if(!permission.isContact()) {
+            System.out.println(Constance.RED + "you do not have permission" + Constance.RESET);
+            return;
+        }
+        showByContact(answerDB);
+    }
+
+    private void checkSetting() {
+        Permission permission = admin.getPermission();
+        if(!permission.isSetting()) {
+            System.out.println(Constance.RED + "you do not have permission" + Constance.RESET);
+            return;
+        }
+        showSetting(answerDB);
+    }
+
+    private void checkTransfer() {
+        Permission permission = admin.getPermission();
+        if(!permission.isTransfer()) {
+            System.out.println(Constance.RED + "you do not have permission" + Constance.RESET);
+            return;
+        }
+        showTransfer(answerDB);
+    }
+
+    private void checkReport() {
+        Permission permission = admin.getPermission();
+        if(!permission.isReport()) {
+            System.out.println(Constance.RED + "you do not have permission" + Constance.RESET);
+            return;
+        }
+        showReport(answerDB);
     }
 
     private void showByContact(AnswerDB answerDB) {
