@@ -7,10 +7,14 @@ import java.util.Objects;
 public class Admin extends Person {
 
     private String userName;
+    private State state;
+    private Permission permission;
 
     public Admin(String firstName, String lastName, String password, String userName) {
         super(firstName, lastName, password);
         this.userName = userName;
+        state = State.UNBLOCKED;
+        permission = new Permission();
     }
 
     public String getUserName() {
@@ -19,6 +23,30 @@ public class Admin extends Person {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public Permission getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Permission permission) {
+        this.permission = permission;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                super.toString() +
+                "userName='" + userName + '\'' +
+                '}';
     }
 
     @Override

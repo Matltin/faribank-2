@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Customer extends Person {
-    
+
     private String iDocument;
     private Phone phone;
     private Account account;
