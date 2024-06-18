@@ -2,9 +2,10 @@ package ir.ac.kntu.db;
 
 import ir.ac.kntu.phone.Phone;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class SimCardDB {
+public class SimCardDB implements Serializable {
     private Set<Phone> phones;
 
     public SimCardDB(Set<Phone> phones) {

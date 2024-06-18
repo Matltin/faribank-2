@@ -1,6 +1,8 @@
 package ir.ac.kntu.message;
 
-public class Message {
+import java.io.Serializable;
+
+public class Message implements Serializable {
 
     private MessageOption messageOption;
     private String message;

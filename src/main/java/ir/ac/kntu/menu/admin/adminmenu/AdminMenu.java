@@ -66,18 +66,16 @@ public class AdminMenu extends Menu {
     }
 
     private void authentication() {
-        int counter = 1;
-        for (Customer customer : customerDB.getCustomers()) {
-            if (customer.getState() == State.IN_PROGRESSING) {
-                System.out.println(counter + "." + customer);
-                counter++;
-            }
-        }
-        if(customerDB.size() == 0 || counter == 1) {
+        customerDB.printCustomer();
+        if(customerDB.size() == 0) {
             System.out.println("it is empty!!");
             return;
         }
         int number = getNumber();
+        if(!(0 < number && number < customerDB.size())) {
+            System.out.println(Constance.RED + "out of the range!!" + Constance.RESET);
+            return;
+        }
         String yesOrNo = getYesNo();
         if("Y".equals(yesOrNo)) {
             accessCustomer(number);

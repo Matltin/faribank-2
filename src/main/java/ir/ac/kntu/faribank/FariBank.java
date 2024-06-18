@@ -61,7 +61,7 @@ public class FariBank {
     public void start() throws ParseException {
         initializeDB();
         initialize();
-        mainMenu.show();
+//        mainMenu.show();
         saveFile();
     }
 
@@ -73,6 +73,13 @@ public class FariBank {
         chiefDB = new ChiefDB(readChiefDB());
         answerDB = new AnswerDB(readAnswerDB());
         payaDB = new PayaDB(readPayaDB());
+//        simCardDB = new SimCardDB(new HashSet<>());
+//        customerDB = new CustomerDB(new HashSet<>());
+//        bankDB = new BankDB(new HashSet<>(), simCardDB);
+//        adminDB = new AdminDB(new HashSet<>());
+//        chiefDB = new ChiefDB(new HashSet<>());
+//        answerDB = new AnswerDB(new ArrayList<>());
+//        payaDB = new PayaDB(new ArrayList<>());
     }
 
     private void saveFile() {
@@ -81,24 +88,24 @@ public class FariBank {
         saveCustomerDB();
         saveBankDB();
         saveChiefDB();
-        saveAdminDB();
         saveChiefDB();
+        saveAnswerDB();
         savePayaDB();
     }
 
     private void initialize() {
-
-        Customer customer1 = new Customer("a", "a", "Mm@1383", "12", "09102607040", simCardDB);
-        Customer customer2 = new Customer("b", "b", "Rr@1384", "13", "09112607040", simCardDB);
-        Customer customer3 = new Customer("c", "c", "Cc@1383", "14", "09122607040", simCardDB);
-
-        customer1.setState(State.ACCEPTED);
-        customer2.setState(State.ACCEPTED);
-        customer3.setState(State.ACCEPTED);
-
-        customerDB.addCustomer(customer1);
-        customerDB.addCustomer(customer2);
-        customerDB.addCustomer(customer3);
+//
+//        Customer customer1 = new Customer("a", "a", "Mm@1383", "12", "09102607040", simCardDB);
+//        Customer customer2 = new Customer("b", "b", "Rr@1384", "13", "09112607040", simCardDB);
+//        Customer customer3 = new Customer("c", "c", "Cc@1383", "14", "09122607040", simCardDB);
+//
+//        customer1.setState(State.ACCEPTED);
+//        customer2.setState(State.ACCEPTED);
+//        customer3.setState(State.ACCEPTED);
+//
+//        customerDB.addCustomer(customer1);
+//        customerDB.addCustomer(customer2);
+//        customerDB.addCustomer(customer3);
 
 
         SearchUserMenu searchUserMenu = new SearchUserMenu(customerDB);
@@ -149,7 +156,8 @@ public class FariBank {
                 } catch (EOFException e) {
                     break;
                 } catch (Exception e) {
-                    System.out.println("some problem in reading from file");
+                    System.out.println("some problem in reading from SimCardDB.txt file ");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -166,7 +174,7 @@ public class FariBank {
                 try{
                     output.writeObject(phone);
                 } catch (IOException e) {
-                    System.out.println("some problem in writing in file");
+                    System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -186,7 +194,8 @@ public class FariBank {
                 } catch (EOFException e) {
                     break;
                 } catch (Exception e) {
-                    System.out.println("some problem in reading from file");
+                    System.out.println("some problem in reading from AdminDB.txt file");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -203,7 +212,7 @@ public class FariBank {
                 try{
                     output.writeObject(admin);
                 } catch (IOException e) {
-                    System.out.println("some problem in writing in file");
+                    System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -223,7 +232,8 @@ public class FariBank {
                 } catch (EOFException e) {
                     break;
                 } catch (Exception e) {
-                    System.out.println("some problem in reading from file");
+                    System.out.println("some problem in reading from CustomerDB.txt file" + e.getMessage());
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -240,7 +250,7 @@ public class FariBank {
                 try{
                     output.writeObject(customer);
                 } catch (IOException e) {
-                    System.out.println("some problem in writing in file");
+                    System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -260,7 +270,8 @@ public class FariBank {
                 } catch (EOFException e) {
                     break;
                 } catch (Exception e) {
-                    System.out.println("some problem in reading from file");
+                    System.out.println("some problem in reading from ChiefDB.txt file");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -277,7 +288,7 @@ public class FariBank {
                 try{
                     output.writeObject(chief);
                 } catch (IOException e) {
-                    System.out.println("some problem in writing in file");
+                    System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -297,7 +308,8 @@ public class FariBank {
                 } catch (EOFException e) {
                     break;
                 } catch (Exception e) {
-                    System.out.println("some problem in reading from file");
+                    System.out.println("some problem in reading from AnswerDB.txt file");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -314,7 +326,7 @@ public class FariBank {
                 try{
                     output.writeObject(message);
                 } catch (IOException e) {
-                    System.out.println("some problem in writing in file");
+                    System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -334,7 +346,8 @@ public class FariBank {
                 } catch (EOFException e) {
                     break;
                 } catch (Exception e) {
-                    System.out.println("some problem in reading from file");
+                    System.out.println("some problem in reading from PayaDB.txt file");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -351,7 +364,7 @@ public class FariBank {
                 try{
                     output.writeObject(paya);
                 } catch (IOException e) {
-                    System.out.println("some problem in writing in file");
+                    System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -371,7 +384,8 @@ public class FariBank {
                 } catch (EOFException e) {
                     break;
                 } catch (Exception e) {
-                    System.out.println("some problem in reading from file");
+                    System.out.println("some problem in reading from BankDB.txt file");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -388,7 +402,7 @@ public class FariBank {
                 try{
                     output.writeObject(customer);
                 } catch (IOException e) {
-                    System.out.println("some problem in writing in file");
+                    System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
         } catch (IOException e) {

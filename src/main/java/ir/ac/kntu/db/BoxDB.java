@@ -2,10 +2,11 @@ package ir.ac.kntu.db;
 
 import ir.ac.kntu.box.Box;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class BoxDB {
+public class BoxDB implements Serializable {
     private List<Box> boxes;
 
     public BoxDB(List<Box> boxes) {

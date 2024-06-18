@@ -2,9 +2,10 @@ package ir.ac.kntu.transaction;
 
 import ir.ac.kntu.util.Calendar;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Transaction {
+public class Transaction implements Serializable {
 
     private String fNameDestination;
     private String lNameDestination;

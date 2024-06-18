@@ -2,11 +2,12 @@ package ir.ac.kntu.db;
 
 import ir.ac.kntu.message.Message;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MessageDB {
+public class MessageDB implements Serializable {
 
     private List<Message> messageList;
 

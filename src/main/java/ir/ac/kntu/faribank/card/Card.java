@@ -1,9 +1,10 @@
 package ir.ac.kntu.faribank.card;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Random;
 
-public class Card {
+public class Card implements Serializable {
     private String password;
     private String cardNumber;
 

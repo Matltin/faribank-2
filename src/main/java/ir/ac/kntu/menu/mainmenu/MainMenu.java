@@ -33,7 +33,7 @@ public class MainMenu extends Menu {
                     default -> System.out.print("");
                 }
             } else {
-                System.out.println(Constance.RED + "invalid input!!");
+                System.out.println(Constance.RED + "invalid input!!" + Constance.RESET);
             }
             mainMenuOption = printMenuOptions();
         }

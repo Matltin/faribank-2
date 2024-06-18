@@ -18,6 +18,8 @@ public class Constance {
 
     public static final long mileSecond = 1000L * 60 * 60 * 24 * 30;
 
+    public static final int VALUE_TO_DISPLAY = 3;
+
     public static final String BLACK = "\033[0;30m";   // BLACK
 
     public static final String RED = "\033[0;31m";     // RED

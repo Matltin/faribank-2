@@ -1,9 +1,10 @@
 package ir.ac.kntu.box;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Box {
+public class Box implements Serializable {
     private String name;
     private long balance;
     private BoxType boxType;

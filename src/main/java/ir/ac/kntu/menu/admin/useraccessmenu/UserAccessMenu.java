@@ -42,15 +42,11 @@ public class UserAccessMenu extends Menu {
     }
 
     private void showUser() {
-        int counter = 1;
         if(customerDB.size() == 0) {
             System.out.println(Constance.RED + "it is empty!!" + Constance.RESET);
             return;
         }
-        for (Customer customer : customerDB.getCustomers()) {
-            System.out.println(counter + "." + customer.getFirstName() + " " + customer.getLastName() + " " + customer.getPhoneNumber());
-            counter++;
-        }
+        customerDB.printCustomer();
 
 
     }

@@ -10,8 +10,8 @@ public class ChiefDB {
 
     public ChiefDB(Set<Chief> chiefs) {
         this.chiefs = chiefs;
-        this.chiefs.add(new Chief("matin", "ahamdi", "Rr@138406", "c", 1));
-        this.chiefs.add(new Chief("reyhane", "mirarabshahi", "Mm@138406", "d", 2));
+//        this.chiefs.add(new Chief("matin", "ahamdi", "Rr@138406", "c", 1));
+//        this.chiefs.add(new Chief("reyhane", "mirarabshahi", "Mm@138406", "d", 2));
     }
 
     public void addChief(Chief chief) {

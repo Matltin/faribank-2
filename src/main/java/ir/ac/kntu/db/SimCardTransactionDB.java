@@ -2,10 +2,11 @@ package ir.ac.kntu.db;
 
 import ir.ac.kntu.simcard.SimCard;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimCardTransactionDB {
+public class SimCardTransactionDB implements Serializable {
     private List<SimCard> simCards;
 
     public SimCardTransactionDB() {

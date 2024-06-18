@@ -107,5 +107,4 @@ public class BoxMenu extends Menu {
         }
         return box;
     }
-
 }

@@ -9,17 +9,17 @@ public class BankDB {
 
     public BankDB(Set<Customer> bankCustomer, SimCardDB simCardDB) {
         this.bankCustomer = bankCustomer;
-        Customer customer1 = new Customer("jack", "valobiyayesehramiz", "Jj@1980", "91", "09052607040", simCardDB);
-        Customer customer2 = new Customer("mmd", "valtopesehramiz", "Mm@1376", "55", "09092607040", simCardDB);
-
-        customer1.getAccount().setAccountNO("123456789");
-        customer1.getAccount().getCard().setCardNumber("123456789123");
-
-        customer2.getAccount().setAccountNO("123456798");
-        customer2.getAccount().getCard().setCardNumber("123456789132");
-
-        bankCustomer.add(customer1);
-        bankCustomer.add(customer2);
+//        Customer customer1 = new Customer("jack", "valobiyayesehramiz", "Jj@1980", "91", "09052607040", simCardDB);
+//        Customer customer2 = new Customer("mmd", "valtopesehramiz", "Mm@1376", "55", "09092607040", simCardDB);
+//
+//        customer1.getAccount().setAccountNO("123456789");
+//        customer1.getAccount().getCard().setCardNumber("123456789123");
+//
+//        customer2.getAccount().setAccountNO("123456798");
+//        customer2.getAccount().getCard().setCardNumber("123456789132");
+//
+//        bankCustomer.add(customer1);
+//        bankCustomer.add(customer2);
 
     }
 

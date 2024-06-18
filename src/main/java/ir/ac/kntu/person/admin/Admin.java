@@ -3,9 +3,10 @@ package ir.ac.kntu.person.admin;
 import ir.ac.kntu.person.Person;
 import ir.ac.kntu.person.chief.State;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Admin extends Person {
+public class Admin extends Person implements Serializable {
 
     private String userName;
     private State state;

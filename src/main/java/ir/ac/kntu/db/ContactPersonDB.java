@@ -1,12 +1,14 @@
 package ir.ac.kntu.db;
 
+import ir.ac.kntu.Constance;
 import ir.ac.kntu.person.ContactPerson;
+import ir.ac.kntu.person.admin.Admin;
+import ir.ac.kntu.util.ScannerWrapper;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.io.Serializable;
+import java.util.*;
 
-public class ContactPersonDB {
+public class ContactPersonDB implements Serializable {
 
 
     private List<ContactPerson> contactPersonList;
@@ -53,10 +55,80 @@ public class ContactPersonDB {
     }
 
     public void printContactPerson() {
+        Map<Integer, ContactPerson> map = getMap();
+        int size = map.size();
+        int valueToDisPlay = Constance.VALUE_TO_DISPLAY;
+        if(valueToDisPlay > size) {
+            valueToDisPlay = size;
+        }
+        int currentPosition = 1;
+        String inputStr;
+        print(1, valueToDisPlay + 1, map);
+        do {
+            inputStr = ScannerWrapper.getInstance().nextLine();
+            switch (inputStr) {
+                case "next" -> currentPosition = plus(currentPosition, size, valueToDisPlay, map);
+                case "back" -> currentPosition = minus(currentPosition, size, -valueToDisPlay, map);
+                case "quit" -> {
+                    return;
+                }
+                default -> System.out.println("invalid input");
+            }
+        } while(true);
+    }
+
+    private Map<Integer, ContactPerson> getMap() {
+        Map<Integer, ContactPerson> map = new HashMap<>();
         int counter = 1;
-        for (ContactPerson contactPerson : contactPersonList) {
-            System.out.println(counter + "." + contactPerson.getFirstName() + " " + contactPerson.getLastName());
+        for(ContactPerson contactPerson : contactPersonList) {
+            map.put(counter, contactPerson);
             counter++;
+        }
+        return map;
+    }
+
+    private int minus(int currentPosition, int size, int amount, Map<Integer, ContactPerson> map) {
+        if(currentPosition + amount < 0) {
+            currentPosition = 0;
+            print(1, -amount + 1, map);
+        } else {
+            if(currentPosition == size) {
+                currentPosition += amount;
+            }
+            if(currentPosition + amount < 1) {
+                currentPosition = 0;
+                print(1, -amount + 1, map);
+                return currentPosition;
+            }
+            print(currentPosition + amount, currentPosition + 1, map);
+            currentPosition += amount;
+        }
+        return currentPosition;
+    }
+
+    private int plus(int currentPosition, int size, int amount, Map<Integer, ContactPerson> map) {
+        if(currentPosition + amount > size) {
+            currentPosition = size;
+            print(size - amount, size, map);
+        } else {
+            if(currentPosition == 1) {
+                currentPosition += amount;
+            }
+            if(currentPosition + amount > size) {
+                currentPosition = size;
+                print(size - amount, size, map);
+                return currentPosition;
+            }
+            print(currentPosition, currentPosition + amount, map);
+            currentPosition += amount;
+        }
+        return currentPosition;
+    }
+
+
+    private void print(int a, int b, Map<Integer, ContactPerson> map) {
+        for(int i = a; i < b; i++) {
+            System.out.println(i + "." + map.get(i).getFirstName() + " " + map.get(i).getLastName());
         }
     }
 

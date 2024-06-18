@@ -2,7 +2,9 @@ package ir.ac.kntu.person.chief;
 
 import ir.ac.kntu.person.Person;
 
-public class Chief extends Person {
+import java.io.Serializable;
+
+public class Chief extends Person  implements Serializable {
     private String userName;
     private int position;
     private State state;

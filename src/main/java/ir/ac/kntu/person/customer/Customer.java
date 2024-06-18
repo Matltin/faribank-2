@@ -7,10 +7,11 @@ import ir.ac.kntu.person.ContactPerson;
 import ir.ac.kntu.person.Person;
 import ir.ac.kntu.phone.Phone;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Random;
 
-public class Customer extends Person {
+public class Customer extends Person implements Serializable {
 
     private String iDocument;
     private Phone phone;

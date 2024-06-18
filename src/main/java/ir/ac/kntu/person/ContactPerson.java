@@ -1,8 +1,9 @@
 package ir.ac.kntu.person;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ContactPerson {
+public class ContactPerson implements Serializable {
     private String firstName;
     private String lastName;
     private String phoneNumber;

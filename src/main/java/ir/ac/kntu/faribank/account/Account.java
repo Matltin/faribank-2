@@ -10,10 +10,11 @@ import ir.ac.kntu.person.customer.Customer;
 import ir.ac.kntu.transaction.Transaction;
 import ir.ac.kntu.transaction.TransactionType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Account {
+public class Account implements Serializable{
 
     private long balance;
     private String accountNO;

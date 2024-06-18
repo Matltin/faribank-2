@@ -2,11 +2,12 @@ package ir.ac.kntu.db;
 
 import ir.ac.kntu.transaction.Transaction;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class TransactionDB {
+public class TransactionDB implements Serializable {
     private List<Transaction> transactions;
 
     public TransactionDB() {
