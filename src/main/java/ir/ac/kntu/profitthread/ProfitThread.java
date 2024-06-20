@@ -15,7 +15,7 @@ public class ProfitThread implements Runnable{
 
     @Override
     public void run() {
-        long money = (long) (box.getBalance() * Constance.getPROFIT())/100;
+        long money = (long) (box.getBalance() * Constance.getProfit())/100;
         customer.getAccount().deposit(money);
         box.setCountMonth(box.getCountMonth() - 1);
         box.makeNewDate();

@@ -2,7 +2,6 @@ package ir.ac.kntu.db;
 
 import ir.ac.kntu.Constance;
 import ir.ac.kntu.person.ContactPerson;
-import ir.ac.kntu.person.admin.Admin;
 import ir.ac.kntu.util.ScannerWrapper;
 
 import java.io.Serializable;
@@ -126,8 +125,8 @@ public class ContactPersonDB implements Serializable {
     }
 
 
-    private void print(int a, int b, Map<Integer, ContactPerson> map) {
-        for(int i = a; i < b; i++) {
+    private void print(int first, int second, Map<Integer, ContactPerson> map) {
+        for(int i = first; i < second; i++) {
             System.out.println(i + "." + map.get(i).getFirstName() + " " + map.get(i).getLastName());
         }
     }
@@ -143,8 +142,12 @@ public class ContactPersonDB implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         ContactPersonDB that = (ContactPersonDB) obj;
         return Objects.equals(contactPersonList, that.contactPersonList);
     }

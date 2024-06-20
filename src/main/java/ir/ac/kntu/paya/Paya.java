@@ -4,12 +4,12 @@ import ir.ac.kntu.person.customer.Customer;
 
 public class Paya {
     private Customer sourceCustomer;
-    private Customer destinationCustomer;
+    private Customer dstCustomer;
     private long money;
 
-    public Paya(Customer sourceCustomer, Customer destinationCustomer, long money) {
+    public Paya(Customer sourceCustomer, Customer dstCustomer, long money) {
         this.sourceCustomer = sourceCustomer;
-        this.destinationCustomer = destinationCustomer;
+        this.dstCustomer = dstCustomer;
         this.money = money;
     }
 
@@ -21,12 +21,12 @@ public class Paya {
         this.sourceCustomer = sourceCustomer;
     }
 
-    public Customer getDestinationCustomer() {
-        return destinationCustomer;
+    public Customer getDstCustomer() {
+        return dstCustomer;
     }
 
-    public void setDestinationCustomer(Customer destinationCustomer) {
-        this.destinationCustomer = destinationCustomer;
+    public void setDstCustomer(Customer dstCustomer) {
+        this.dstCustomer = dstCustomer;
     }
 
     public long getMoney() {

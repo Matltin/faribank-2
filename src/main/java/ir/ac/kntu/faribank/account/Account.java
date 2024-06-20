@@ -182,14 +182,18 @@ public class Account implements Serializable{
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Account account = (Account) obj;
-        return Objects.equals(accountNO, account.accountNO) && Objects.equals(transactionDB, account.transactionDB) && Objects.equals(boxDB, account.boxDB) && Objects.equals(card, account.card);
+        return Objects.equals(accountNO, account.accountNO) && Objects.equals(card, account.card);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountNO, transactionDB, boxDB, card);
+        return Objects.hash(accountNO, card);
     }
 }

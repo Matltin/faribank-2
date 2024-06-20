@@ -31,9 +31,9 @@ public class BranchMenu extends Menu {
             if (messageOption != null) {
                 switch (messageOption) {
                     case CONTACT -> checkContact();
-                    case SETTING -> showSetting(answerDB);
-                    case TRANSFER -> showTransfer(answerDB);
-                    case REPORT -> showReport(answerDB);
+                    case SETTING -> checkSetting();
+                    case TRANSFER -> checkTransfer();
+                    case REPORT -> checkReport();
                     default -> System.out.print("");
                 }
             } else {

@@ -53,20 +53,21 @@ public class BlockMenu extends Menu {
     private void blockAdmin() {
         String userName = getUserName();
         Admin admin = adminDB.findAdmin(userName);
-        if(admin == null) {
+        if (admin == null) {
             System.out.println(Constance.RED + "there is no chief with this user name!!" + Constance.RESET);
             return;
         }
         setBlockState(admin);
     }
+
     private void blockChief() {
         String userName = getUserName();
         Chief chief1 = chiefDB.findChief(userName);
-        if(chief1 == null) {
+        if (chief1 == null) {
             System.out.println(Constance.RED + "there is no chief with this user name!!" + Constance.RESET);
             return;
         }
-        if(chief1.getPosition() < chief.getPosition()) {
+        if (chief1.getPosition() < chief.getPosition()) {
             System.out.println(Constance.RED + "you do not have permission to block this user!!" + Constance.RESET);
             return;
         }
@@ -75,16 +76,16 @@ public class BlockMenu extends Menu {
 
     private void setBlockState(Object obj) {
         String blockState = getBlockState();
-        if("Y".equals(blockState)) {
-            if(obj instanceof Chief newChief) {
+        if ("Y".equals(blockState)) {
+            if (obj instanceof Chief newChief) {
                 newChief.setState(State.BLOCKED);
-            } else if(obj instanceof Admin admin) {
+            } else if (obj instanceof Admin admin) {
                 admin.setState(State.BLOCKED);
             }
-        } else if("N".equals(blockState)) {
-            if(obj instanceof Chief newChief) {
+        } else if ("N".equals(blockState)) {
+            if (obj instanceof Chief newChief) {
                 newChief.setState(State.UNBLOCKED);
-            } else if(obj instanceof Admin admin) {
+            } else if (obj instanceof Admin admin) {
                 admin.setState(State.UNBLOCKED);
             }
         } else {

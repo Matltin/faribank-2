@@ -71,7 +71,7 @@ public class SimCardMenu extends Menu {
                 Customer contact = customerDB.findCustomerByPhone(contactPerson.getPhoneNumber());
                 contact.getPhone().increaseChargeCredit(charge);
                 SimCard simCard = new SimCard(contact.getFirstName(), contact.getLastName(), contact.getPhoneNumber(), charge);
-                customer.getSimCardTransactionDB().addSim(simCard);
+                customer.getCardTransactionDB().addSim(simCard);
             }
             counter++;
         }
@@ -94,7 +94,7 @@ public class SimCardMenu extends Menu {
 
         Customer cust = bankDB.findCustomerByPhone(phoneNumber);
         SimCard simCard = new SimCard(cust.getFirstName(), cust.getLastName(), cust.getPhoneNumber(), charge);
-        customer.getSimCardTransactionDB().addSim(simCard);
+        customer.getCardTransactionDB().addSim(simCard);
 
     }
 
@@ -107,11 +107,11 @@ public class SimCardMenu extends Menu {
         customer.getAccount().withdraw(charge + Constance.getSimWage());
         customer.getPhone().increaseChargeCredit(charge);
         SimCard simCard = new SimCard(customer.getFirstName(), customer.getLastName(), customer.getPhoneNumber(), charge);
-        customer.getSimCardTransactionDB().addSim(simCard);
+        customer.getCardTransactionDB().addSim(simCard);
     }
 
     private void showTransaction() {
-        customer.getSimCardTransactionDB().printTransaction();
+        customer.getCardTransactionDB().printTransaction();
     }
 
     private void showCharge() {

@@ -100,10 +100,10 @@ public class BoxMenu extends Menu {
                 = Executors.newScheduledThreadPool(monthCounter);
 
         for(int i = 1; i <= monthCounter; i++) {
-            ProfitThread p = new ProfitThread();
-            p.setBox(box, customer);
-            Thread t = new Thread(p);
-            scheduler.schedule(t, 30L * i, TimeUnit.DAYS);
+            ProfitThread profitThread = new ProfitThread();
+            profitThread.setBox(box, customer);
+            Thread thread = new Thread(profitThread);
+            scheduler.schedule(thread, 30L * i, TimeUnit.DAYS);
         }
         return box;
     }

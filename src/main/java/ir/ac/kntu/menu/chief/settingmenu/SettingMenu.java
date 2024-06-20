@@ -39,30 +39,36 @@ public class SettingMenu extends Menu {
 
     public void wage() {
         long wage = getWage();
-        Constance.setWAGE(wage);
+        Constance.setWage(wage);
     }
+
     public void simWage() {
         long wage = getWage();
         Constance.setSimWage(wage);
     }
+
     public void fariFariWage() {
         long wage = getWage();
         Constance.setFariFariWage(wage);
     }
+
     public void fariCardWage() {
         long wage = getWage();
         Constance.setFariCardWage(wage);
     }
+
     public void fariPayaWage() {
         long wage = getWage();
         Constance.setFariPaya(wage);
     }
+
     public void fariPoleWage() {
         long wage = getWage();
         Constance.setFariPole(wage);
     }
+
     public void profit() {
         long wage = getWage();
-        Constance.setPROFIT(wage);
+        Constance.setProfit(wage);
     }
 }

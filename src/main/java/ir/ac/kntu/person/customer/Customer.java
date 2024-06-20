@@ -21,7 +21,7 @@ public class Customer extends Person implements Serializable {
     private boolean contactAvailable;
     private State state;
     private MessageDB messageDB;
-    private SimCardTransactionDB simCardTransactionDB;
+    private SimCardTransactionDB cardTransactionDB;
 
     public Customer(String firstName, String lastName, String password, String iDocument, String phoneNumber, SimCardDB simCardDB) {
         super(firstName, lastName, password);
@@ -36,7 +36,7 @@ public class Customer extends Person implements Serializable {
         state = State.IN_PROGRESSING;
         messageDB = new MessageDB();
         account = new Account(0, randomAccountNO());
-        simCardTransactionDB = new SimCardTransactionDB();
+        cardTransactionDB = new SimCardTransactionDB();
     }
 
     public String getIDocument() {
@@ -111,12 +111,12 @@ public class Customer extends Person implements Serializable {
         this.phone = phone;
     }
 
-    public SimCardTransactionDB getSimCardTransactionDB() {
-        return simCardTransactionDB;
+    public SimCardTransactionDB getCardTransactionDB() {
+        return cardTransactionDB;
     }
 
-    public void setSimCardTransactionDB(SimCardTransactionDB simCardTransactionDB) {
-        this.simCardTransactionDB = simCardTransactionDB;
+    public void setCardTransactionDB(SimCardTransactionDB cardTransactionDB) {
+        this.cardTransactionDB = cardTransactionDB;
     }
 
     public void addContactPerson(String firstName, String lastName, String phoneNumber, CustomerDB customerDB) {
@@ -161,14 +161,18 @@ public class Customer extends Person implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Customer customer = (Customer) obj;
-        return Objects.equals(iDocument, customer.iDocument) && Objects.equals(phone, customer.phone) && Objects.equals(account, customer.account) && Objects.equals(contactPersonDB, customer.contactPersonDB) && Objects.equals(recentTransaction, customer.recentTransaction) && Objects.equals(messageDB, customer.messageDB);
+        return Objects.equals(iDocument, customer.iDocument) && Objects.equals(phone, customer.phone) && Objects.equals(account, customer.account);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(iDocument, phone, account, contactPersonDB, recentTransaction, messageDB);
+        return Objects.hash(iDocument, phone, account);
     }
 }

@@ -44,10 +44,10 @@ public class ManageUserMenu extends Menu {
     @Override
     public void show() {
         System.out.println("manage user Menu");
-        ManageUserMenuOption manageUserMenuOption = printMenuOption();
-        while (manageUserMenuOption != ManageUserMenuOption.BACK) {
-            if (manageUserMenuOption != null) {
-                switch (manageUserMenuOption) {
+        ManageUserMenuOption userMenuOption = printMenuOption();
+        while (userMenuOption != ManageUserMenuOption.BACK) {
+            if (userMenuOption != null) {
+                switch (userMenuOption) {
                     case SHOW_USER -> showUser();
                     case SEARCH_USER -> searchUserMenu.show();
                     case ADD_USER -> addUserMenu.show(chief);
@@ -59,7 +59,7 @@ public class ManageUserMenu extends Menu {
             } else {
                 System.out.println("invalid input!!");
             }
-            manageUserMenuOption = printMenuOption();
+            userMenuOption = printMenuOption();
         }
     }
 

@@ -21,7 +21,7 @@ import ir.ac.kntu.menu.customer.accountmangemenu.AccountMangeMenu;
 import ir.ac.kntu.menu.customer.accountmangemenu.recenttransactionmenu.RecentTransactionMenu;
 import ir.ac.kntu.menu.customer.accountnumbermenu.AccountNumberMenu;
 import ir.ac.kntu.menu.customer.boxmenu.BoxMenu;
-import ir.ac.kntu.menu.customer.cardMenu.CardMenu;
+import ir.ac.kntu.menu.customer.cardmenu.CardMenu;
 import ir.ac.kntu.menu.customer.contactmenu.ContactMenu;
 import ir.ac.kntu.menu.customer.customermenu.CustomerMenu;
 import ir.ac.kntu.menu.customer.logincustomermenu.LoginCustomerMenu;
@@ -37,7 +37,6 @@ import ir.ac.kntu.paya.Paya;
 import ir.ac.kntu.person.admin.Admin;
 import ir.ac.kntu.person.chief.Chief;
 import ir.ac.kntu.person.customer.Customer;
-import ir.ac.kntu.person.customer.State;
 import ir.ac.kntu.phone.Phone;
 
 import java.io.*;
@@ -61,8 +60,8 @@ public class FariBank {
     public void start() throws ParseException {
         initializeDB();
         initialize();
-//        mainMenu.show();
-        saveFile();
+        mainMenu.show();
+//        saveFile();
     }
 
     private void initializeDB() {
@@ -94,27 +93,7 @@ public class FariBank {
     }
 
     private void initialize() {
-//
-//        Customer customer1 = new Customer("a", "a", "Mm@1383", "12", "09102607040", simCardDB);
-//        Customer customer2 = new Customer("b", "b", "Rr@1384", "13", "09112607040", simCardDB);
-//        Customer customer3 = new Customer("c", "c", "Cc@1383", "14", "09122607040", simCardDB);
-//
-//        customer1.setState(State.ACCEPTED);
-//        customer2.setState(State.ACCEPTED);
-//        customer3.setState(State.ACCEPTED);
-//
-//        customerDB.addCustomer(customer1);
-//        customerDB.addCustomer(customer2);
-//        customerDB.addCustomer(customer3);
 
-
-        SearchUserMenu searchUserMenu = new SearchUserMenu(customerDB);
-        StateMenu stateMenu = new StateMenu(answerDB);
-        BranchMenu branchMenu = new BranchMenu(answerDB);
-        SearchMenu searchMenu = new SearchMenu(answerDB, stateMenu, branchMenu);
-        RequestAdminMenu requestAdminMenu = new RequestAdminMenu(answerDB, searchMenu);
-        UserAccessMenu userAccessMenu = new UserAccessMenu(customerDB, searchUserMenu);
-        AdminMenu adminMenu = new AdminMenu(customerDB, requestAdminMenu, userAccessMenu);
         RequestCustomerMenu requestCustMenu = new RequestCustomerMenu(answerDB);
         RecentTransactionMenu recentTransMenu = new RecentTransactionMenu();
         AccountMangeMenu accountMangeMenu = new AccountMangeMenu(customerDB, recentTransMenu);
@@ -129,20 +108,40 @@ public class FariBank {
         TransferMenu transferMenu = new TransferMenu(customerDB, bankDB, accountNumberMenu, cardMenu);
         CustomerMenu customerMenu = new CustomerMenu(transferMenu, accountMangeMenu, contactMenu, supportMenu,
                 settingMenu, boxMenu, simCardMenu);
-        LoginAdminMenu loginAdminMenu = new LoginAdminMenu(adminDB, adminMenu);
-        UserRoleMenu userRoleMenu = new UserRoleMenu(customerDB, adminDB, chiefDB);
-        EditUserMenu editUserMenu = new EditUserMenu(adminDB, chiefDB);
-        ir.ac.kntu.menu.chief.searchusermenu.SearchUserMenu searchUserMenu1 = new ir.ac.kntu.menu.chief.searchusermenu.SearchUserMenu(customerDB, adminDB, chiefDB, userRoleMenu);
-        AddUserMenu addUserMenu = new AddUserMenu(chiefDB, adminDB);
-        BlockMenu blockMenu = new BlockMenu(chiefDB, adminDB);
+        LoginAdminMenu loginAdminMenu = getLoginAdminMenu();
         LoginCustomerMenu loginCustomerMenu = new LoginCustomerMenu(customerDB, simCardDB, customerMenu, bankDB, answerDB);
-        AutoTransaction autoTransaction = new AutoTransaction(payaDB, customerDB);
-        ir.ac.kntu.menu.chief.settingmenu.SettingMenu settingMenu1 = new ir.ac.kntu.menu.chief.settingmenu.SettingMenu();
-        ManageUserMenu manageUserMenu = new ManageUserMenu(chiefDB, adminDB, customerDB, editUserMenu, searchUserMenu1, addUserMenu, blockMenu);
-        ChiefMenu chiefMenu = new ChiefMenu(manageUserMenu, settingMenu1, autoTransaction);
-        LoginChiefMenu loginChiefMenu = new LoginChiefMenu(chiefDB, chiefMenu);
+        LoginChiefMenu loginChiefMenu = getLoginChiefMenu();
         mainMenu = new MainMenu(loginAdminMenu, loginCustomerMenu, loginChiefMenu);
     }
+
+    private LoginAdminMenu getLoginAdminMenu() {
+        SearchUserMenu searchUserMenu = new SearchUserMenu(customerDB);
+        StateMenu stateMenu = new StateMenu(answerDB);
+        BranchMenu branchMenu = new BranchMenu(answerDB);
+        SearchMenu searchMenu = new SearchMenu(answerDB, stateMenu, branchMenu);
+        RequestAdminMenu requestAdminMenu = new RequestAdminMenu(answerDB, searchMenu);
+        UserAccessMenu userAccessMenu = new UserAccessMenu(customerDB, searchUserMenu);
+        AdminMenu adminMenu = new AdminMenu(customerDB, requestAdminMenu, userAccessMenu);
+        return new LoginAdminMenu(adminDB, adminMenu);
+    }
+
+    private LoginChiefMenu getLoginChiefMenu() {
+        UserRoleMenu userRoleMenu = new UserRoleMenu(customerDB, adminDB, chiefDB);
+        BlockMenu blockMenu = new BlockMenu(chiefDB, adminDB);
+        AddUserMenu addUserMenu = new AddUserMenu(chiefDB, adminDB);
+        EditUserMenu editUserMenu = new EditUserMenu(adminDB, chiefDB);
+        ir.ac.kntu.menu.chief.settingmenu.SettingMenu settingMenu1 = new ir.ac.kntu.menu.chief.settingmenu.SettingMenu();
+        AutoTransaction autoTransaction = new AutoTransaction(payaDB, customerDB);
+        ir.ac.kntu.menu.chief.searchusermenu.SearchUserMenu searchUserMenu1 = new ir.ac.kntu.menu.chief.searchusermenu.SearchUserMenu(customerDB, adminDB, chiefDB, userRoleMenu);
+        ManageUserMenu manageUserMenu = new ManageUserMenu(chiefDB, adminDB, customerDB, editUserMenu, searchUserMenu1, addUserMenu, blockMenu);
+        ChiefMenu chiefMenu = new ChiefMenu(manageUserMenu, settingMenu1, autoTransaction);
+        return new LoginChiefMenu(chiefDB, chiefMenu);
+    }
+
+
+
+
+
 
     private Set<Phone> readSimDB() {
         File file = new File("SimCardDB.txt");
@@ -160,6 +159,7 @@ public class FariBank {
                     break;
                 }
             }
+            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -177,6 +177,7 @@ public class FariBank {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
+            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -198,6 +199,7 @@ public class FariBank {
                     break;
                 }
             }
+            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -215,6 +217,7 @@ public class FariBank {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
+            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -236,6 +239,7 @@ public class FariBank {
                     break;
                 }
             }
+            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -253,6 +257,7 @@ public class FariBank {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
+            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -274,6 +279,7 @@ public class FariBank {
                     break;
                 }
             }
+            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -291,6 +297,7 @@ public class FariBank {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
+            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -312,6 +319,7 @@ public class FariBank {
                     break;
                 }
             }
+            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -329,6 +337,7 @@ public class FariBank {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
+            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -350,6 +359,7 @@ public class FariBank {
                     break;
                 }
             }
+            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -367,6 +377,7 @@ public class FariBank {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
+            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -388,6 +399,7 @@ public class FariBank {
                     break;
                 }
             }
+            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }
@@ -405,6 +417,7 @@ public class FariBank {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
+            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
         }

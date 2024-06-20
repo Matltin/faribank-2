@@ -4,7 +4,6 @@ import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.CustomerDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.menu.admin.searchusermenu.SearchUserMenu;
-import ir.ac.kntu.person.customer.Customer;
 
 public class UserAccessMenu extends Menu {
 
@@ -46,7 +45,9 @@ public class UserAccessMenu extends Menu {
             System.out.println(Constance.RED + "it is empty!!" + Constance.RESET);
             return;
         }
-        customerDB.printCustomer();
+        try {
+            customerDB.printCustomer();
+        } catch (Exception e) {}
 
 
     }

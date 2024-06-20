@@ -2,21 +2,21 @@ package ir.ac.kntu;
 
 public class Constance {
 
-    private static long WAGE = 500;
+    private static long wage = 500;
 
-    private static long SIM_WAGE = 200;
+    private static long simWage = 200;
 
-    private static long FARI_FARI_WAGE = 0;
+    private static long fariFariWage = 0;
 
-    private static long FARI_CARD_WAGE = 300;
+    private static long fariCardWage = 300;
 
-    private static long FARI_POLE = 2;
+    private static long fariPole = 2;
 
-    private static long FARI_PAYA = 2000;
+    private static long fariPaya = 2000;
 
-    private static long PROFIT = 5;
+    private static long profit = 5;
 
-    public static final long mileSecond = 1000L * 60 * 60 * 24 * 30;
+    public static final long MILE_SECOND = 1000L * 60 * 60 * 24 * 30;
 
     public static final int VALUE_TO_DISPLAY = 3;
 
@@ -38,59 +38,59 @@ public class Constance {
 
     public static final String RESET = "\u001B[0m";
 
-    public static long getWAGE() {
-        return WAGE;
+    public static long getWage() {
+        return wage;
     }
 
-    public static void setWAGE(long WAGE) {
-        Constance.WAGE = WAGE;
+    public static void setWage(long wage) {
+        Constance.wage = wage;
     }
 
     public static long getSimWage() {
-        return SIM_WAGE;
+        return simWage;
     }
 
     public static void setSimWage(long simWage) {
-        SIM_WAGE = simWage;
+        Constance.simWage = simWage;
     }
 
     public static long getFariFariWage() {
-        return FARI_FARI_WAGE;
+        return fariFariWage;
     }
 
     public static void setFariFariWage(long fariFariWage) {
-        FARI_FARI_WAGE = fariFariWage;
+        Constance.fariFariWage = fariFariWage;
     }
 
     public static long getFariCardWage() {
-        return FARI_CARD_WAGE;
+        return fariCardWage;
     }
 
     public static void setFariCardWage(long fariCardWage) {
-        FARI_CARD_WAGE = fariCardWage;
+        Constance.fariCardWage = fariCardWage;
     }
 
     public static long getFariPole() {
-        return FARI_POLE;
+        return fariPole;
     }
 
     public static void setFariPole(long fariPole) {
-        FARI_POLE = fariPole;
+        Constance.fariPole = fariPole;
     }
 
     public static long getFariPaya() {
-        return FARI_PAYA;
+        return fariPaya;
     }
 
     public static void setFariPaya(long fariPaya) {
-        FARI_PAYA = fariPaya;
+        Constance.fariPaya = fariPaya;
     }
 
-    public static long getPROFIT() {
-        return PROFIT;
+    public static long getProfit() {
+        return profit;
     }
 
-    public static void setPROFIT(long PROFIT) {
-        Constance.PROFIT = PROFIT;
+    public static void setProfit(long profit) {
+        Constance.profit = profit;
     }
 }

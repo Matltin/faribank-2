@@ -20,10 +20,10 @@ public class ManageBoxMenu extends Menu {
     @Override
     public void show() {
         System.out.println("manage box page");
-        ManageBoxMenuOption manageBoxMenuOption = printMenuOption();
-        while (manageBoxMenuOption != ManageBoxMenuOption.BACK) {
-            if (manageBoxMenuOption != null) {
-                switch (manageBoxMenuOption) {
+        ManageBoxMenuOption boxMenuOption = printMenuOption();
+        while (boxMenuOption != ManageBoxMenuOption.BACK) {
+            if (boxMenuOption != null) {
+                switch (boxMenuOption) {
                     case TRANSFER_ACCOUNT_TO_BOX -> transferByAccount();
                     case TRANSFER_BOX_TO_ACCOUNT -> transferByBox();
 //                    case TRANSFER_BOX_TO_BOX -> transferBoxToBox();
@@ -32,7 +32,7 @@ public class ManageBoxMenu extends Menu {
             } else {
                 System.out.println("invalid input!!");
             }
-            manageBoxMenuOption = printMenuOption();
+            boxMenuOption = printMenuOption();
         }
     }
 
@@ -124,9 +124,6 @@ public class ManageBoxMenu extends Menu {
         Date nowDate = new Date();
         Date boxDate = box.getDate();
         long diff = nowDate.getTime() - boxDate.getTime();
-        if(diff > Constance.mileSecond * box.getCountMonth()) {
-            return true;
-        }
-        return false;
+        return diff > Constance.MILE_SECOND * box.getCountMonth();
     }
 }

@@ -20,10 +20,10 @@ public class EditUserMenu extends Menu {
     @Override
     public void show() {
         System.out.println("logging page");
-        EditUserMenuOption editUserMenuOption = printMenuOption();
-        while (editUserMenuOption != EditUserMenuOption.BACK) {
-            if (editUserMenuOption != null) {
-                switch (editUserMenuOption) {
+        EditUserMenuOption userMenuOption = printMenuOption();
+        while (userMenuOption != EditUserMenuOption.BACK) {
+            if (userMenuOption != null) {
+                switch (userMenuOption) {
                     case ADMIN -> editAdmin();
                     case CHIEF -> editChief();
                     default -> System.out.print("");
@@ -31,7 +31,7 @@ public class EditUserMenu extends Menu {
             } else {
                 System.out.println("invalid input!!");
             }
-            editUserMenuOption = printMenuOption();
+            userMenuOption = printMenuOption();
         }
     }
 

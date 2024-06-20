@@ -4,6 +4,9 @@ import ir.ac.kntu.Constance;
 import ir.ac.kntu.person.admin.Admin;
 import ir.ac.kntu.util.ScannerWrapper;
 
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -84,6 +87,7 @@ public class AdminDB {
         if(currentPosition + amount < 0) {
             currentPosition = 0;
             print(1, -amount + 1, map);
+            voice();
         } else {
             if(currentPosition == size) {
                 currentPosition += amount;
@@ -103,6 +107,7 @@ public class AdminDB {
         if(currentPosition + amount > size) {
             currentPosition = size;
             print(size - amount, size, map);
+            voice();
         } else {
             if(currentPosition == 1) {
                 currentPosition += amount;
@@ -119,9 +124,26 @@ public class AdminDB {
     }
 
 
-    private void print(int a, int b, Map<Integer, Admin> map) {
-        for(int i = a; i < b; i++) {
+    private void print(int first, int second, Map<Integer, Admin> map) {
+        for(int i = first; i < second; i++) {
             System.out.println(i + "." + map.get(i).getFirstName() + " " + map.get(i).getLastName());
         }
+    }
+
+    private void voice() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                File file = new File("ding.wav");
+                try {
+                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(audioStream);
+                    clip.start();
+                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }).start();
     }
 }

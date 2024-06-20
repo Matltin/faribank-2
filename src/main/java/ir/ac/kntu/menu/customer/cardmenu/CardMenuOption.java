@@ -1,4 +1,4 @@
-package ir.ac.kntu.menu.customer.cardMenu;
+package ir.ac.kntu.menu.customer.cardmenu;
 
 public enum CardMenuOption {
     TRANSFER_TO_FARI,

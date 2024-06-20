@@ -41,8 +41,12 @@ public class MessageDB implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         MessageDB messageDB = (MessageDB) obj;
         return Objects.equals(messageList, messageDB.messageList);
     }

@@ -1,4 +1,4 @@
-package ir.ac.kntu.menu.customer.cardMenu;
+package ir.ac.kntu.menu.customer.cardmenu;
 
 import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.BankDB;

@@ -39,7 +39,7 @@ public class PayaDB {
         int counter = 1;
         for (Paya paya : payas) {
             System.out.println(counter + "." + " source customer : " + paya.getSourceCustomer().getLastName() +
-                    " destination customer : " + paya.getDestinationCustomer().getLastName());
+                    " destination customer : " + paya.getDstCustomer().getLastName());
             counter++;
         }
     }

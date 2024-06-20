@@ -66,13 +66,13 @@ public class AdminMenu extends Menu {
     }
 
     private void authentication() {
-        customerDB.printCustomer();
+        int size = printCustomer();
         if(customerDB.size() == 0) {
             System.out.println("it is empty!!");
             return;
         }
         int number = getNumber();
-        if(!(0 < number && number < customerDB.size())) {
+        if(!(0 < number && number < size)) {
             System.out.println(Constance.RED + "out of the range!!" + Constance.RESET);
             return;
         }
@@ -124,7 +124,7 @@ public class AdminMenu extends Menu {
             System.out.println(Constance.RED + "you do not have permission" + Constance.RESET);
             return;
         }
-        requestAdminMenu.show(admin);
+        requestAdminMenu.show();
     }
 
     private void checkUserAccess() {
@@ -134,5 +134,16 @@ public class AdminMenu extends Menu {
             return;
         }
         userAccessMenu.show();
+    }
+
+    private int printCustomer() {
+        int counter = 1;
+        for(Customer customer : customerDB.getCustomers()) {
+            if(customer.getState() == State.IN_PROGRESSING) {
+                System.out.println(counter + "." + customer.getFirstName() + " " + customer.getLastName());
+                counter++;
+            }
+        }
+        return counter;
     }
 }

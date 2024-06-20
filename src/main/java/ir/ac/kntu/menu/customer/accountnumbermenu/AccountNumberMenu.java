@@ -29,10 +29,10 @@ public class AccountNumberMenu extends Menu {
     @Override
     public void show() {
         System.out.println("transfer menu");
-        AccountNumberMenuOption accountNumberMenuOption = printMenuOption();
-        while (accountNumberMenuOption != AccountNumberMenuOption.BACK) {
-            if (accountNumberMenuOption != null) {
-                switch (accountNumberMenuOption) {
+        AccountNumberMenuOption numberMenuOption = printMenuOption();
+        while (numberMenuOption != AccountNumberMenuOption.BACK) {
+            if (numberMenuOption != null) {
+                switch (numberMenuOption) {
                     case TRANSFER_TO_FARI -> transferToFari();
                     case TRANSFER_PAYA -> transferPaya();
                     case TRANSFER_POLE -> transferPole();
@@ -41,7 +41,7 @@ public class AccountNumberMenu extends Menu {
             } else {
                 System.out.println(Constance.RED + "invalid input!!" + Constance.RESET);
             }
-            accountNumberMenuOption = printMenuOption();
+            numberMenuOption = printMenuOption();
         }
     }
 

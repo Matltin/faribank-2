@@ -27,10 +27,10 @@ public class SearchUserMenu extends Menu {
     @Override
     public void show() {
         System.out.println("manage user Menu");
-        SearchUserMenuOption searchUserMenuOption = printMenuOption();
-        while (searchUserMenuOption != SearchUserMenuOption.BACK) {
-            if (searchUserMenuOption != null) {
-                switch (searchUserMenuOption) {
+        SearchUserMenuOption userMenuOption = printMenuOption();
+        while (userMenuOption != SearchUserMenuOption.BACK) {
+            if (userMenuOption != null) {
+                switch (userMenuOption) {
                     case BY_FIRST_NAME -> searchByFirstName();
                     case BY_LAST_NAME -> searchByLastName();
                     case BY_PHONE_NUMBER -> searchByPhoneNumber();
@@ -40,7 +40,7 @@ public class SearchUserMenu extends Menu {
             } else {
                 System.out.println("invalid input!!");
             }
-            searchUserMenuOption = printMenuOption();
+            userMenuOption = printMenuOption();
         }
     }
 

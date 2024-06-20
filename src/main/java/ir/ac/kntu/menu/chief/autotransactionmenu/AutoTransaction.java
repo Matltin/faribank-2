@@ -27,10 +27,10 @@ public class AutoTransaction extends Menu {
     @Override
     public void show() {
         System.out.println("auto transaction Menu");
-        AutoTransactionOption autoTransactionOption = printMenuOption();
-        while (autoTransactionOption != AutoTransactionOption.BACK) {
-            if (autoTransactionOption != null) {
-                switch (autoTransactionOption) {
+        AutoTransactionOption transactionOption = printMenuOption();
+        while (transactionOption != AutoTransactionOption.BACK) {
+            if (transactionOption != null) {
+                switch (transactionOption) {
                     case TRANSFER -> transfer();
                     case BOX -> boxProfit();
                     default -> System.out.print("");
@@ -38,7 +38,7 @@ public class AutoTransaction extends Menu {
             } else {
                 System.out.println("invalid input!!");
             }
-            autoTransactionOption = printMenuOption();
+            transactionOption = printMenuOption();
         }
     }
 
@@ -86,27 +86,27 @@ public class AutoTransaction extends Menu {
         }
         Box box = returnBox(number);
         Customer customer = returnCustomer(number);
-        long money = (long)(box.getBalance() * Constance.getPROFIT())/100;
+        long money = (long)(box.getBalance() * Constance.getProfit())/100;
         customer.getAccount().deposit(money);
     }
 
     private void accessTransfer(Paya paya) {
         Customer sourceCustomer = paya.getSourceCustomer();
-        Customer destinationCustomer = paya.getDestinationCustomer();
+        Customer dstCustomer = paya.getDstCustomer();
         long inputMoney = paya.getMoney();
         sourceCustomer.getAccount().withdraw(inputMoney + Constance.getFariPaya());
 
-        Transaction transaction = new Transaction(destinationCustomer.getFirstName(), destinationCustomer.getLastName(),
-                destinationCustomer.getAccount().getAccountNO(), sourceCustomer.getAccount().getAccountNO(), TransactionType.TRANSFER);
+        Transaction transaction = new Transaction(dstCustomer.getFirstName(), dstCustomer.getLastName(),
+                dstCustomer.getAccount().getAccountNO(), sourceCustomer.getAccount().getAccountNO(), TransactionType.TRANSFER);
         sourceCustomer.getAccount().getTransactionDB().addTransaction(transaction);
 
-        ContactPerson contactPerson1 = new ContactPerson(destinationCustomer.getFirstName(), destinationCustomer.getLastName(),
-                destinationCustomer.getPhoneNumber(), destinationCustomer.getAccount().getAccountNO());
+        ContactPerson contactPerson1 = new ContactPerson(dstCustomer.getFirstName(), dstCustomer.getLastName(),
+                dstCustomer.getPhoneNumber(), dstCustomer.getAccount().getAccountNO());
         sourceCustomer.getRecentTransaction().addContactPersonList(contactPerson1);
 
         sourceCustomer.getAccount().roundBalance();
 
-        destinationCustomer.getAccount().deposit(inputMoney);
+        dstCustomer.getAccount().deposit(inputMoney);
     }
 
     private int showBoxProfit() {
@@ -115,7 +115,7 @@ public class AutoTransaction extends Menu {
         for(Customer customer : customerDB.getCustomers()) {
             for(Box box : customer.getAccount().getBoxDB().getBoxes()) {
                 long diff = nowDate.getTime() - box.getDate().getTime();
-                if(diff > Constance.mileSecond && box.getBoxType() == BoxType.PROFIT) {
+                if(diff > Constance.MILE_SECOND && box.getBoxType() == BoxType.PROFIT) {
                     System.out.println(counter + "." + box);
                     counter++;
                 }
@@ -130,7 +130,7 @@ public class AutoTransaction extends Menu {
         for(Customer customer : customerDB.getCustomers()) {
             for(Box box : customer.getAccount().getBoxDB().getBoxes()) {
                 long diff = nowDate.getTime() - box.getDate().getTime();
-                if(diff > Constance.mileSecond && box.getBoxType() == BoxType.PROFIT) {
+                if(diff > Constance.MILE_SECOND && box.getBoxType() == BoxType.PROFIT) {
                     if(number == counter) {
                         return box;
                     }
@@ -147,7 +147,7 @@ public class AutoTransaction extends Menu {
         for(Customer customer : customerDB.getCustomers()) {
             for(Box box : customer.getAccount().getBoxDB().getBoxes()) {
                 long diff = nowDate.getTime() - box.getDate().getTime();
-                if(diff > Constance.mileSecond && box.getBoxType() == BoxType.PROFIT) {
+                if(diff > Constance.MILE_SECOND && box.getBoxType() == BoxType.PROFIT) {
                     if(number == counter) {
                         return customer;
                     }

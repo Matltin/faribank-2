@@ -1,10 +1,12 @@
 package ir.ac.kntu.db;
 
 import ir.ac.kntu.Constance;
-import ir.ac.kntu.person.admin.Admin;
 import ir.ac.kntu.person.customer.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -23,11 +25,7 @@ public class CustomerDB {
 
     public void removeCustomer(Customer customer) {
         try {
-            if (doesExist(customer)) {
-                customers.remove(customer);
-            } else {
-                throw new RuntimeException("customer not found!!");
-            }
+            customers.remove(customer);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -113,6 +111,7 @@ public class CustomerDB {
         if(currentPosition + amount < 0) {
             currentPosition = 0;
             print(1, -amount + 1, map);
+            voice();
         } else {
             if(currentPosition == size) {
                 currentPosition += amount;
@@ -131,7 +130,8 @@ public class CustomerDB {
     private int plus(int currentPosition, int size, int amount, Map<Integer, Customer> map) {
         if(currentPosition + amount > size) {
             currentPosition = size;
-            print(size - amount, size, map);
+            print(size - amount + 1, size + 1, map);
+            voice();
         } else {
             if(currentPosition == 1) {
                 currentPosition += amount;
@@ -148,9 +148,26 @@ public class CustomerDB {
     }
 
 
-    private void print(int a, int b, Map<Integer, Customer> map) {
-        for(int i = a; i < b; i++) {
+    private void print(int first, int second, Map<Integer, Customer> map) {
+        for(int i = first; i < second; i++) {
             System.out.println(i + "." + map.get(i).getFirstName() + " " + map.get(i).getLastName() + " " + map.get(i).getPhoneNumber());
         }
+    }
+
+    private void voice() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                File file = new File("ding.wav");
+                try {
+                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(audioStream);
+                    clip.start();
+                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }).start();
     }
 }

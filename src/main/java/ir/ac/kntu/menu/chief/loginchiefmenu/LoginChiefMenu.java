@@ -4,7 +4,6 @@ import ir.ac.kntu.Constance;
 import ir.ac.kntu.db.ChiefDB;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.menu.chief.chiefmenu.ChiefMenu;
-import ir.ac.kntu.person.admin.Admin;
 import ir.ac.kntu.person.chief.Chief;
 import ir.ac.kntu.person.chief.State;
 
@@ -23,10 +22,10 @@ public class LoginChiefMenu extends Menu {
     @Override
     public void show() throws ParseException {
         System.out.println("logging page");
-        LoginChiefMenuOption loginChiefMenuOption = printMenuOption();
-        while (loginChiefMenuOption != LoginChiefMenuOption.BACK) {
-            if (loginChiefMenuOption != null) {
-                switch (loginChiefMenuOption) {
+        LoginChiefMenuOption chiefMenuOption = printMenuOption();
+        while (chiefMenuOption != LoginChiefMenuOption.BACK) {
+            if (chiefMenuOption != null) {
+                switch (chiefMenuOption) {
                     case LOGIN -> login();
                     case REGISTER -> register();
                     default -> System.out.print("");
@@ -34,7 +33,7 @@ public class LoginChiefMenu extends Menu {
             } else {
                 System.out.println("invalid input!!");
             }
-            loginChiefMenuOption = printMenuOption();
+            chiefMenuOption = printMenuOption();
         }
     }
 

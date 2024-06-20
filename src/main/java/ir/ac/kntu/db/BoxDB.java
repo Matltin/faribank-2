@@ -44,8 +44,12 @@ public class BoxDB implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         BoxDB boxDB = (BoxDB) obj;
         return Objects.equals(boxes, boxDB.boxes);
     }
