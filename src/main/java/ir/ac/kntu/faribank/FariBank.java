@@ -57,14 +57,14 @@ public class FariBank {
     private AnswerDB answerDB;
     private PayaDB payaDB;
 
-    public void start() throws ParseException {
+    public void start() throws ParseException, IOException {
         initializeDB();
         initialize();
         mainMenu.show();
-//        saveFile();
+        saveFile();
     }
 
-    private void initializeDB() {
+    private void initializeDB() throws IOException {
         simCardDB = new SimCardDB(readSimDB());
         customerDB = new CustomerDB(readCustomerDB());
         bankDB = new BankDB(readBankDB(), simCardDB);
@@ -81,7 +81,7 @@ public class FariBank {
 //        payaDB = new PayaDB(new ArrayList<>());
     }
 
-    private void saveFile() {
+    private void saveFile() throws IOException {
         saveSimDB();
         saveAdminDB();
         saveCustomerDB();
@@ -139,15 +139,12 @@ public class FariBank {
     }
 
 
-
-
-
-
-    private Set<Phone> readSimDB() {
+    private Set<Phone> readSimDB() throws IOException {
         File file = new File("SimCardDB.txt");
         Set<Phone> phones = new HashSet<>();
+        ObjectInputStream input = null;
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
-            ObjectInputStream input = new ObjectInputStream(fileInputStream);
+            input = new ObjectInputStream(fileInputStream);
             while (true) {
                 try {
                     Phone phone = (Phone) input.readObject();
@@ -159,35 +156,42 @@ public class FariBank {
                     break;
                 }
             }
-            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert input != null;
+            input.close();
         }
         return phones;
     }
 
-    private void saveSimDB() {
+    private void saveSimDB() throws IOException {
         File file = new File("SimCardDB.txt");
-        try(FileOutputStream fileOutputStream = new FileOutputStream(file)) {
-            ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
-            for(Phone phone : simCardDB.getPhones()) {
-                try{
+        ObjectOutputStream output = null;
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+            output = new ObjectOutputStream(fileOutputStream);
+            for (Phone phone : simCardDB.getPhones()) {
+                try {
                     output.writeObject(phone);
                 } catch (IOException e) {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
-            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert output != null;
+            output.close();
         }
+
     }
 
-    private Set<Admin> readAdminDB() {
+    private Set<Admin> readAdminDB() throws IOException {
         File file = new File("AdminDB.txt");
         Set<Admin> admins = new HashSet<>();
+        ObjectInputStream input = null;
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
-            ObjectInputStream input = new ObjectInputStream(fileInputStream);
+            input = new ObjectInputStream(fileInputStream);
             while (true) {
                 try {
                     Admin admin = (Admin) input.readObject();
@@ -199,35 +203,41 @@ public class FariBank {
                     break;
                 }
             }
-            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert input != null;
+            input.close();
         }
         return admins;
     }
 
-    private void saveAdminDB() {
+    private void saveAdminDB() throws IOException {
         File file = new File("AdminDB.txt");
-        try(FileOutputStream fileOutputStream = new FileOutputStream(file)) {
-            ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
-            for(Admin admin : adminDB.getAdmins()) {
-                try{
+        ObjectOutputStream output = null;
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+            output = new ObjectOutputStream(fileOutputStream);
+            for (Admin admin : adminDB.getAdmins()) {
+                try {
                     output.writeObject(admin);
                 } catch (IOException e) {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
-            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert output != null;
+            output.close();
         }
     }
 
-    private Set<Customer> readCustomerDB() {
+    private Set<Customer> readCustomerDB() throws IOException {
         File file = new File("CustomerDB.txt");
         Set<Customer> customers = new HashSet<>();
+        ObjectInputStream input = null;
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
-            ObjectInputStream input = new ObjectInputStream(fileInputStream);
+            input = new ObjectInputStream(fileInputStream);
             while (true) {
                 try {
                     Customer customer = (Customer) input.readObject();
@@ -239,35 +249,41 @@ public class FariBank {
                     break;
                 }
             }
-            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert input != null;
+            input.close();
         }
         return customers;
     }
 
-    private void saveCustomerDB() {
+    private void saveCustomerDB() throws IOException {
         File file = new File("CustomerDB.txt");
-        try(FileOutputStream fileOutputStream = new FileOutputStream(file)) {
-            ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
-            for(Customer customer : customerDB.getCustomers()) {
-                try{
+        ObjectOutputStream output = null;
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+            output = new ObjectOutputStream(fileOutputStream);
+            for (Customer customer : customerDB.getCustomers()) {
+                try {
                     output.writeObject(customer);
                 } catch (IOException e) {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
-            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert output != null;
+            output.close();
         }
     }
 
-    private Set<Chief> readChiefDB() {
+    private Set<Chief> readChiefDB() throws IOException {
         File file = new File("ChiefDB.txt");
         Set<Chief> chiefs = new HashSet<>();
+        ObjectInputStream input = null;
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
-            ObjectInputStream input = new ObjectInputStream(fileInputStream);
+            input = new ObjectInputStream(fileInputStream);
             while (true) {
                 try {
                     Chief chief = (Chief) input.readObject();
@@ -279,35 +295,41 @@ public class FariBank {
                     break;
                 }
             }
-            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert input != null;
+            input.close();
         }
         return chiefs;
     }
 
-    private void saveChiefDB() {
+    private void saveChiefDB() throws IOException {
         File file = new File("ChiefDB.txt");
-        try(FileOutputStream fileOutputStream = new FileOutputStream(file)) {
-            ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
-            for(Chief chief : chiefDB.getChiefs()) {
-                try{
+        ObjectOutputStream output = null;
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+            output = new ObjectOutputStream(fileOutputStream);
+            for (Chief chief : chiefDB.getChiefs()) {
+                try {
                     output.writeObject(chief);
                 } catch (IOException e) {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
-            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert output != null;
+            output.close();
         }
     }
 
-    private List<Message> readAnswerDB() {
+    private List<Message> readAnswerDB() throws IOException {
         File file = new File("AnswerDB.txt");
         List<Message> messages = new ArrayList<>();
+        ObjectInputStream input = null;
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
-            ObjectInputStream input = new ObjectInputStream(fileInputStream);
+            input = new ObjectInputStream(fileInputStream);
             while (true) {
                 try {
                     Message message = (Message) input.readObject();
@@ -319,35 +341,41 @@ public class FariBank {
                     break;
                 }
             }
-            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert input != null;
+            input.close();
         }
         return messages;
     }
 
-    private void saveAnswerDB() {
+    private void saveAnswerDB() throws IOException {
         File file = new File("AnswerDB.txt");
-        try(FileOutputStream fileOutputStream = new FileOutputStream(file)) {
-            ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
-            for(Message message : answerDB.getMessageList()) {
-                try{
+        ObjectOutputStream output = null;
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+            output = new ObjectOutputStream(fileOutputStream);
+            for (Message message : answerDB.getMessageList()) {
+                try {
                     output.writeObject(message);
                 } catch (IOException e) {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
-            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert output != null;
+            output.close();
         }
     }
 
-    private List<Paya> readPayaDB() {
+    private List<Paya> readPayaDB() throws IOException {
         File file = new File("PayaDB.txt");
         List<Paya> payas = new ArrayList<>();
+        ObjectInputStream input = null;
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
-            ObjectInputStream input = new ObjectInputStream(fileInputStream);
+            input = new ObjectInputStream(fileInputStream);
             while (true) {
                 try {
                     Paya paya = (Paya) input.readObject();
@@ -359,35 +387,41 @@ public class FariBank {
                     break;
                 }
             }
-            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert input != null;
+            input.close();
         }
         return payas;
     }
 
-    private void savePayaDB() {
+    private void savePayaDB() throws IOException {
         File file = new File("PayaDB.txt");
-        try(FileOutputStream fileOutputStream = new FileOutputStream(file)) {
-            ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
-            for(Paya paya : payaDB.getPayas()) {
-                try{
+        ObjectOutputStream output = null;
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+            output = new ObjectOutputStream(fileOutputStream);
+            for (Paya paya : payaDB.getPayas()) {
+                try {
                     output.writeObject(paya);
                 } catch (IOException e) {
                     System.out.println("some problem in writing in file" + e.getMessage());
                 }
             }
-            output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert output != null;
+            output.close();
         }
     }
 
-    private Set<Customer> readBankDB() {
+    private Set<Customer> readBankDB() throws IOException {
         File file = new File("BankDB.txt");
         Set<Customer> customers = new HashSet<>();
+        ObjectInputStream input = null;
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
-            ObjectInputStream input = new ObjectInputStream(fileInputStream);
+            input = new ObjectInputStream(fileInputStream);
             while (true) {
                 try {
                     Customer customer = (Customer) input.readObject();
@@ -399,19 +433,22 @@ public class FariBank {
                     break;
                 }
             }
-            input.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert input != null;
+            input.close();
         }
         return customers;
     }
 
-    private void saveBankDB() {
+    private void saveBankDB() throws IOException {
         File file = new File("BankDB.txt");
-        try(FileOutputStream fileOutputStream = new FileOutputStream(file)) {
-            ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
-            for(Customer customer : customerDB.getCustomers()) {
-                try{
+        ObjectOutputStream output = null;
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+            output = new ObjectOutputStream(fileOutputStream);
+            for (Customer customer : customerDB.getCustomers()) {
+                try {
                     output.writeObject(customer);
                 } catch (IOException e) {
                     System.out.println("some problem in writing in file" + e.getMessage());
@@ -420,6 +457,9 @@ public class FariBank {
             output.close();
         } catch (IOException e) {
             System.out.println("something went wrong " + e.getMessage());
+        } finally {
+            assert output != null;
+            output.close();
         }
     }
 

@@ -49,8 +49,8 @@ public class CustomerDB {
     }
 
     public Customer findCustomerByPhone(String phoneNumber) {
-        for(Customer customer : customers) {
-            if(customer.getPhone().getPhoneNumber().equals(phoneNumber)) {
+        for (Customer customer : customers) {
+            if (customer.getPhone().getPhoneNumber().equals(phoneNumber)) {
                 return customer;
             }
         }
@@ -66,8 +66,8 @@ public class CustomerDB {
     }
 
     public String getAccountNumber(String cardNumber) {
-        for(Customer customer : customers) {
-            if(customer.getAccount().getCard().getCardNumber().equals(cardNumber)) {
+        for (Customer customer : customers) {
+            if (customer.getAccount().getCard().getCardNumber().equals(cardNumber)) {
                 return customer.getAccount().getAccountNO();
             }
         }
@@ -78,7 +78,7 @@ public class CustomerDB {
         Map<Integer, Customer> map = getMap();
         int size = map.size();
         int valueToDisPlay = Constance.VALUE_TO_DISPLAY;
-        if(valueToDisPlay > size) {
+        if (valueToDisPlay > size) {
             valueToDisPlay = size;
         }
         int currentPosition = 1;
@@ -94,13 +94,13 @@ public class CustomerDB {
                 }
                 default -> System.out.println("invalid input");
             }
-        } while(true);
+        } while (true);
     }
 
     private Map<Integer, Customer> getMap() {
         Map<Integer, Customer> map = new HashMap<>();
         int counter = 1;
-        for(Customer customer : customers) {
+        for (Customer customer : customers) {
             map.put(counter, customer);
             counter++;
         }
@@ -108,15 +108,15 @@ public class CustomerDB {
     }
 
     private int minus(int currentPosition, int size, int amount, Map<Integer, Customer> map) {
-        if(currentPosition + amount < 0) {
+        if (currentPosition + amount < 0) {
             currentPosition = 0;
             print(1, -amount + 1, map);
             voice();
         } else {
-            if(currentPosition == size) {
+            if (currentPosition == size) {
                 currentPosition += amount;
             }
-            if(currentPosition + amount < 1) {
+            if (currentPosition + amount < 1) {
                 currentPosition = 0;
                 print(1, -amount + 1, map);
                 return currentPosition;
@@ -128,15 +128,15 @@ public class CustomerDB {
     }
 
     private int plus(int currentPosition, int size, int amount, Map<Integer, Customer> map) {
-        if(currentPosition + amount > size) {
+        if (currentPosition + amount > size) {
             currentPosition = size;
             print(size - amount + 1, size + 1, map);
             voice();
         } else {
-            if(currentPosition == 1) {
+            if (currentPosition == 1) {
                 currentPosition += amount;
             }
-            if(currentPosition + amount > size) {
+            if (currentPosition + amount > size) {
                 currentPosition = size;
                 print(size - amount, size, map);
                 return currentPosition;
@@ -149,7 +149,7 @@ public class CustomerDB {
 
 
     private void print(int first, int second, Map<Integer, Customer> map) {
-        for(int i = first; i < second; i++) {
+        for (int i = first; i < second; i++) {
             System.out.println(i + "." + map.get(i).getFirstName() + " " + map.get(i).getLastName() + " " + map.get(i).getPhoneNumber());
         }
     }
@@ -159,13 +159,24 @@ public class CustomerDB {
             @Override
             public void run() {
                 File file = new File("ding.wav");
+                AudioInputStream audioStream = null;
+                Clip clip = null;
                 try {
-                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-                    Clip clip = AudioSystem.getClip();
+                    audioStream = AudioSystem.getAudioInputStream(file);
+                    clip = AudioSystem.getClip();
                     clip.open(audioStream);
                     clip.start();
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                     throw new RuntimeException(e);
+                } finally {
+                    try {
+                        assert audioStream != null;
+                        assert clip != null;
+                        audioStream.close();
+                        clip.close();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         }).start();

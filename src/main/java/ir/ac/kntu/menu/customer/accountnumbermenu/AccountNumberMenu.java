@@ -79,6 +79,10 @@ public class AccountNumberMenu extends Menu {
             System.out.println(Constance.RED + "customer not found!!" + Constance.RESET);
             return;
         }
+        if(cust.getAccount().getCard().getCardNumber().contains("9610")) {
+            System.out.println(Constance.RED + "you can not transfer to this account!!" + Constance.RESET);
+            return;
+        }
         long inputMoney = getInputMoney();
         boolean check = customer.getAccount().transferPaya(inputMoney, customer, cust, payaDB);
         if(!check) {
@@ -92,6 +96,10 @@ public class AccountNumberMenu extends Menu {
         Customer cust = bankDB.findCustomerByAccNumber(accountNo);
         if(cust == null) {
             System.out.println(Constance.RED + "customer not found!!" + Constance.RESET);
+            return;
+        }
+        if(cust.getAccount().getCard().getCardNumber().contains("9610")) {
+            System.out.println(Constance.RED + "you can not transfer to this account!!" + Constance.RESET);
             return;
         }
         long inputMoney = getInputMoney();

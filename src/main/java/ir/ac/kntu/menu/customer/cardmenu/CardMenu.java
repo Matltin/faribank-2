@@ -75,6 +75,10 @@ public class CardMenu extends Menu {
 
     private void transferPaya() {
         String cardNumber = getCardNumber();
+        if(cardNumber.contains("9610")) {
+            System.out.println(Constance.RED + "you can not transfer to this account!!" + Constance.RESET);
+            return;
+        }
         String accountNumber = bankDB.getAccountNumber(cardNumber);
         if(accountNumber == null) {
             System.out.println(Constance.RED + "there is no customer with this card number!!" + Constance.RESET);
@@ -91,6 +95,10 @@ public class CardMenu extends Menu {
 
     private void transferPole() {
         String cardNumber = getCardNumber();
+        if(cardNumber.contains("9610")) {
+            System.out.println(Constance.RED + "you can not transfer to this account!!" + Constance.RESET);
+            return;
+        }
         String accountNumber = bankDB.getAccountNumber(cardNumber);
         if(accountNumber == null) {
             System.out.println(Constance.RED + "there is no customer with this card number!!" + Constance.RESET);
@@ -101,6 +109,7 @@ public class CardMenu extends Menu {
             System.out.println(Constance.RED + "customer not found!!" + Constance.RESET);
             return;
         }
+
         long inputMoney = getInputMoney();
         boolean check = customer.getAccount().transferPole(inputMoney, accountNumber, bankDB);
         if(!check) {

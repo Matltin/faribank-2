@@ -6,11 +6,11 @@ import ir.ac.kntu.box.BoxType;
 import ir.ac.kntu.menu.Menu;
 import ir.ac.kntu.menu.customer.manageboxmenu.ManageBoxMenu;
 import ir.ac.kntu.person.customer.Customer;
-import ir.ac.kntu.profitthread.ProfitThread;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+//import ir.ac.kntu.profitthread.ProfitThread;
+//
+//import java.util.concurrent.Executors;
+//import java.util.concurrent.ScheduledExecutorService;
+//import java.util.concurrent.TimeUnit;
 
 public class BoxMenu extends Menu {
 
@@ -96,15 +96,15 @@ public class BoxMenu extends Menu {
         Box box = new Box(boxName, inputMoney, BoxType.PROFIT, monthCounter);
         customer.getAccount().withdraw(inputMoney);
 
-        ScheduledExecutorService scheduler
-                = Executors.newScheduledThreadPool(monthCounter);
+//        ScheduledExecutorService scheduler
+//                = Executors.newScheduledThreadPool(monthCounter);
 
-        for(int i = 1; i <= monthCounter; i++) {
-            ProfitThread profitThread = new ProfitThread();
-            profitThread.setBox(box, customer);
-            Thread thread = new Thread(profitThread);
-            scheduler.schedule(thread, 30L * i, TimeUnit.DAYS);
-        }
+//        for(int i = 1; i <= monthCounter; i++) {
+//            ProfitThread profitThread = new ProfitThread();
+//            profitThread.setBox(box, customer);
+//            Thread thread = new Thread(profitThread);
+//            scheduler.schedule(thread, 30L * i, TimeUnit.DAYS);
+//        }
         return box;
     }
 }
